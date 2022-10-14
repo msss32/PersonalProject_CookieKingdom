@@ -22,8 +22,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-.gif
-.png
-.jpg
-.zip
-.mp4
+img/
+video/
+*.gif
+*.png
+*.jpg
+*.zip
+*.mp4
