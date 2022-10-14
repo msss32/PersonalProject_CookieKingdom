@@ -4,24 +4,31 @@ import { Link } from "react-router-dom";
 import {
   background1,
   Logo,
-  open1,
+  Logo2,
   sign,
   store1,
   store2,
   store3,
   store4,
 } from "../img";
+import {
+  DarknessWitch,
+  FireFairy,
+  FrostQueen,
+  MoonLight,
+  SeaFairy,
+  WindArcher,
+} from "../img/Legendary";
 
 const Open = () => {
   const [playIndex, setPlayIndex] = useState(0);
   const playList = [
-    { index: 1, url: "video/video1.mp4" },
-    { index: 2, url: "video/video2.mp4" },
-    { index: 3, url: "video/video3.mp4" },
-    { index: 4, url: "video/video4.mp4" },
-    { index: 5, url: "video/video5.mp4" },
+    { index: 0, url: "video/video1.mp4" },
+    { index: 1, url: "video/video2.mp4" },
+    { index: 2, url: "video/video3.mp4" },
+    { index: 3, url: "video/video4.mp4" },
+    { index: 4, url: "video/video5.mp4" },
   ];
-
   const handleNextVideo = (video, playIndex) => {
     if (playIndex === video.length - 1) {
       setPlayIndex(0);
@@ -29,7 +36,6 @@ const Open = () => {
       setPlayIndex(playIndex + 1);
     }
   };
-
   const videoPlayerStyle = {
     margin: 0,
     height: "1070px",
@@ -43,16 +49,36 @@ const Open = () => {
     });
   };
 
-  const [scrollY, setScrollY] = useState(0);
-
   const handleFollow = () => {
-    setScrollY(window.pageYOffset);
-    console.log(window.pageYOffset);
+    if (window.pageYOffset >= 750) {
+      document.querySelector(".rightTxt").style.visibility = "visible";
+      document.querySelector(".leftTxt").classList.remove("fadeOutLeft");
+      document.querySelector(".leftTxt").classList.add("fadeInLeft");
+      document.querySelector(".openImg").style.visibility = "visible";
+    } else {
+      document.querySelector(".rightTxt").style.visibility = "hidden";
+      document.querySelector(".leftTxt").classList.remove("fadeInLeft");
+      document.querySelector(".leftTxt").classList.add("fadeOutLeft");
+      document.querySelector(".openImg").style.visibility = "hidden";
+    }
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleFollow);
+    window.onscroll = handleFollow;
   }, []);
+
+  const openCard = [
+    DarknessWitch,
+    FireFairy,
+    FrostQueen,
+    MoonLight,
+    SeaFairy,
+    WindArcher,
+  ];
+
+  const openCardPick = () => {
+    console.log(openCard[Math.floor(Math.random() * openCard.length)]);
+  };
 
   return (
     <div>
@@ -106,8 +132,13 @@ const Open = () => {
         <span className="scroll" onClick={scrollIntro}></span>
       </Link>
       <div className="scrollTxt">아래로</div>
-      <div className="opening" id="intro">
-        <img src={background1} alt="배경" />
+      <div className="opening">
+        <img src={background1} alt="배경" className="background" />
+        <div className="leftTxt">
+          <img src={Logo2} alt="card" className="logo2" />
+        </div>
+        <div className="openImg"></div>
+        <div className="rightTxt"></div>
       </div>
     </div>
   );
