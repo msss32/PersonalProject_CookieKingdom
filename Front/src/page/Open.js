@@ -55,6 +55,7 @@ const Open = () => {
       document.querySelector(".leftTxt").classList.remove("fadeOutLeft");
       document.querySelector(".leftTxt").classList.add("fadeInLeft");
       document.querySelector(".openImg").style.visibility = "visible";
+      console.log(openCard[Math.floor(Math.random() * openCard.length)]);
     } else {
       document.querySelector(".rightTxt").style.visibility = "hidden";
       document.querySelector(".leftTxt").classList.remove("fadeInLeft");
@@ -65,7 +66,7 @@ const Open = () => {
 
   useEffect(() => {
     window.onscroll = handleFollow;
-  }, []);
+  });
 
   const openCard = [
     DarknessWitch,
@@ -75,10 +76,6 @@ const Open = () => {
     SeaFairy,
     WindArcher,
   ];
-
-  const openCardPick = () => {
-    console.log(openCard[Math.floor(Math.random() * openCard.length)]);
-  };
 
   return (
     <div>
