@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useRef } from "react";
 import CardPick from "../component/CardPick";
+import "../css/shop.css";
 
 const Shop = () => {
-  const hide = () => {
-    document.querySelector(".cardPickBack").style.display = "block";
+  const cardPickRef = useRef();
+  const cardPick = () => {
+    cardPickRef.current.cardPick();
+    document.querySelector(".cardPickBtn").style.display = "none";
   };
-
   return (
     <div>
-      <CardPick />
-      <button onClick={hide}>카드뽑기</button>
+      <CardPick ref={cardPickRef} />
+      <button className="cardPickBtn" onClick={cardPick}>
+        카드뽑기
+      </button>
     </div>
   );
 };

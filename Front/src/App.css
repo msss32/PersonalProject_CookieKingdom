@@ -1,18 +1,32 @@
 .cardPickBack {
   position: relative;
   display: none;
-  background-color: black;
-  opacity: 0.5;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
+}
+
+.background {
+  position: absolute;
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
 }
 
 .cardPick {
   background-color: rebeccapurple;
   position: absolute;
+  opacity: 1;
   top: 50%;
   left: 50%;
-  width: 500px;
-  height: 500px;
+  width: 1000px;
+  height: 700px;
   transform: translate(-50%, -50%);
+}
+
+.exit {
+  position: absolute;
+  top: 0;
+  left: 0;
 }

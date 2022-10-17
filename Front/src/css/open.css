@@ -167,7 +167,7 @@ a:-webkit-any-link {
 .leftTxt {
   position: absolute;
   top: 30%;
-  left: -70%;
+  left: -100%;
 }
 
 .fadeInLeft {
@@ -177,12 +177,12 @@ a:-webkit-any-link {
 
 .fadeOutLeft {
   animation: fadeOutLeft 2s;
-  left: -70%;
+  left: -100%;
 }
 
 @keyframes fadeInLeft {
   0% {
-    left: -70%;
+    left: -100%;
     opacity: 0;
   }
   100% {
@@ -197,16 +197,16 @@ a:-webkit-any-link {
     opacity: 1;
   }
   100% {
-    left: -70%;
+    left: -100%;
     opacity: 0;
   }
 }
 
 .rightTxt {
   position: absolute;
-  top: 30%;
-  right: -70%;
-  width: 150px;
+  top: 13%;
+  right: -100%;
+  width: 450px;
 }
 
 .fadeInRight {
@@ -216,12 +216,12 @@ a:-webkit-any-link {
 
 .fadeOutRight {
   animation: fadeOutRight 2s;
-  right: -70%;
+  right: -100%;
 }
 
 @keyframes fadeInRight {
   0% {
-    right: -70%;
+    right: -100%;
     opacity: 0;
   }
   100% {
@@ -236,7 +236,102 @@ a:-webkit-any-link {
     opacity: 1;
   }
   100% {
-    right: -70%;
+    right: -100%;
     opacity: 0;
   }
+}
+
+.openImg {
+  position: absolute;
+  top: 150%;
+  left: 50%;
+  width: 316px;
+  height: 504px;
+  transform: translate(-50%, -50%);
+  perspective-origin: center;
+}
+
+.openImg .card {
+  width: 100%;
+  backface-visibility: hidden;
+  transition: 1s;
+}
+
+.front {
+  position: absolute;
+  transform: rotateY(-180deg);
+}
+.openImg:hover .card.front {
+  transform: rotateY(0deg);
+}
+
+.back {
+  position: absolute;
+  transform: rotateY(0deg);
+}
+.openImg:hover .card.back {
+  transform: rotateY(180deg);
+}
+
+.cardRotateIn {
+  animation: cardRotateIn 3s;
+  top: 50%;
+}
+
+.cardRotateOut {
+  animation: cardRotateOut 3s;
+  top: 150%;
+}
+
+@keyframes cardRotateIn {
+  0% {
+    top: 150%;
+    transform: translate(-50%, -50%);
+  }
+  10% {
+    transform: translate(-50%, -50%) rotateY(-180deg);
+  }
+  20% {
+    transform: translate(-50%, -50%) rotateY(0deg);
+  }
+  30% {
+    transform: translate(-50%, -50%) rotateY(-180deg);
+  }
+  40% {
+    transform: translate(-50%, -50%) rotateY(0deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotateY(-180deg);
+  }
+  60% {
+    transform: translate(-50%, -50%) rotateY(0deg);
+  }
+  70% {
+    transform: translate(-50%, -50%) rotateY(-180deg);
+  }
+  80% {
+    transform: translate(-50%, -50%) rotateY(0deg);
+  }
+  90% {
+    transform: translate(-50%, -50%) rotateY(-180deg);
+  }
+  100% {
+    top: 50%;
+    transform: translate(-50%, -50%) rotateY(0deg);
+  }
+}
+
+@keyframes cardRotateOut {
+  to {
+    top: 50%;
+  }
+  from {
+    top: 150%;
+  }
+}
+
+.newCard {
+  position: absolute;
+  top: 75%;
+  width: 300px;
 }

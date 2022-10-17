@@ -6,11 +6,13 @@ import {
   background1,
   Logo,
   Logo2,
+  rightImg,
   sign,
   store1,
   store2,
   store3,
   store4,
+  Card_Back,
 } from "../img";
 import {
   DarknessWitch,
@@ -52,16 +54,19 @@ const Open = () => {
 
   const handleFollow = () => {
     if (window.pageYOffset >= 750) {
-      document.querySelector(".rightTxt").style.visibility = "visible";
       document.querySelector(".leftTxt").classList.remove("fadeOutLeft");
       document.querySelector(".leftTxt").classList.add("fadeInLeft");
-      document.querySelector(".openImg").style.visibility = "visible";
-      console.log(openCard[Math.floor(Math.random() * openCard.length)]);
+      document.querySelector(".rightTxt").classList.remove("fadeOutRight");
+      document.querySelector(".rightTxt").classList.add("fadeInRight");
+      document.querySelector(".openImg").classList.remove("cardRotateOut");
+      document.querySelector(".openImg").classList.add("cardRotateIn");
     } else {
-      document.querySelector(".rightTxt").style.visibility = "hidden";
       document.querySelector(".leftTxt").classList.remove("fadeInLeft");
       document.querySelector(".leftTxt").classList.add("fadeOutLeft");
-      document.querySelector(".openImg").style.visibility = "hidden";
+      document.querySelector(".rightTxt").classList.remove("fadeInRight");
+      document.querySelector(".rightTxt").classList.add("fadeOutRight");
+      document.querySelector(".openImg").classList.remove("cardRotateIn");
+      document.querySelector(".openImg").classList.add("cardRotateOut");
     }
   };
 
@@ -69,11 +74,7 @@ const Open = () => {
     window.onscroll = handleFollow;
   });
 
-  // const windowsOpen = () => {
-  //   window.open(href);
-  // };
-
-  const openCard = [
+  const legendaryCard = [
     DarknessWitch,
     FireFairy,
     FrostQueen,
@@ -81,6 +82,9 @@ const Open = () => {
     SeaFairy,
     WindArcher,
   ];
+
+  const handleRandomCard =
+    legendaryCard[Math.floor(Math.random() * legendaryCard.length)];
 
   return (
     <div>
@@ -153,11 +157,18 @@ const Open = () => {
       <div className="opening">
         <img src={background1} alt="배경" className="background" />
         <div className="leftTxt">
-          <img src={Logo2} alt="card" className="logo2" />
+          <img src={Logo2} alt="logo" className="logo2" />
         </div>
-        <div className="openImg"></div>
+        <div className="openImg">
+          <div className="card front">
+            <img src={handleRandomCard} alt="card" />
+          </div>
+          <div className="card back">
+            <img src={Card_Back} alt="card" />
+          </div>
+        </div>
         <div className="rightTxt">
-          <img src="" alt="text"></img>
+          <img src={rightImg} alt="text" width="450px"></img>
         </div>
       </div>
     </div>
