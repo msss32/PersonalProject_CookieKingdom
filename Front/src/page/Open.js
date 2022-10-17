@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "../css/open.css";
 import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
 import {
@@ -68,6 +69,10 @@ const Open = () => {
     window.onscroll = handleFollow;
   });
 
+  // const windowsOpen = () => {
+  //   window.open(href);
+  // };
+
   const openCard = [
     DarknessWitch,
     FireFairy,
@@ -96,31 +101,47 @@ const Open = () => {
       <div className="dark"></div>
       <div className="link">
         <div className="linkBlock">
-          <Link to={"/main"}>
+          <a
+            rel="noreferrer"
+            href="https://play.google.com/store/apps/details?id=com.devsisters.ck"
+            target="_blank"
+          >
             <img src={store1} alt="스토어1" className="store" />
             Google Play
-          </Link>
+          </a>
         </div>
         <div className="linkBlock">
-          <Link to={"/main"}>
+          <a
+            rel="noreferrer"
+            href="https://apps.apple.com/kr/app/%EC%BF%A0%ED%82%A4%EB%9F%B0-%ED%82%B9%EB%8D%A4/id1509450845"
+            target="_blank"
+          >
             <img src={store2} alt="스토어2" className="store" />
             App Store
-          </Link>
+          </a>
         </div>
         <div className="linkBlock">
-          <Link to="intro">
+          <a
+            rel="noreferrer"
+            href="https://m.onestore.co.kr/mobilepoc/apps/appsDetail.omp?prodId=0000751155"
+            target="_blank"
+          >
             <img src={store3} alt="스토어3" className="store" />
             One Store
-          </Link>
+          </a>
         </div>
         <div className="linkBlock">
-          <Link to={"/main"}>
+          <a
+            rel="noreferrer"
+            href="https://galaxystore.samsung.com/detail/com.devsisters.ck"
+            target="_blank"
+          >
             <img src={store4} alt="스토어4" className="store" />
             Galaxy Store
-          </Link>
+          </a>
         </div>
       </div>
-      <Link to={"/main"}>
+      <Link to={"/main"} target="_blank">
         <img src={Logo} alt="로고" className="logo" />
       </Link>
       <img src={sign} alt="사인" className="sign" />
@@ -135,7 +156,9 @@ const Open = () => {
           <img src={Logo2} alt="card" className="logo2" />
         </div>
         <div className="openImg"></div>
-        <div className="rightTxt"></div>
+        <div className="rightTxt">
+          <img src="" alt="text"></img>
+        </div>
       </div>
     </div>
   );
