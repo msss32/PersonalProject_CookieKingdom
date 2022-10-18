@@ -1,3 +1,84 @@
+@font-face {
+  font-family: "Cookie-Run-R";
+  src: url("../font/CookieRun\ Regular.ttf");
+}
+@font-face {
+  font-family: "Cookie-Run-T";
+  src: url("../font/CookieRun\ Black.ttf");
+}
+@font-face {
+  font-family: "Cookie-Run-B";
+  src: url("../font/CookieRun\ Bold.ttf");
+}
+
 ul {
   list-style: none;
+  padding: 0;
+}
+
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+.mySwiper1 {
+  width: 1200px;
+  height: 700px;
+  top: 100px;
+}
+
+.mySwiper1 .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.mySwiper1 .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.mySwiper2 {
+  width: 200px;
+  height: 500px;
+}
+
+.mySwiper2 .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.mySwiper2 .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
