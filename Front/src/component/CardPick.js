@@ -10,20 +10,21 @@ const CardPick = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     cardPick: () => {
       document.querySelector(".cardPickBack").style.display = "block";
+      setVideoUrl("video/CookiePick.mp4");
     },
   }));
 
-  const endVideo = () => {
+  const endVideo = (a) => {
     document.querySelector(".cardPickBack").style.display = "none";
     document.querySelector(".cardPickBtn").style.display = "block";
-    videoRef.current.player.prevPlayed = 0;
-    console.log(videoRef.current.player.prevPlayed);
+    setVideoUrl(null);
   };
 
   const videoPlayerStyle = { margin: 0, height: "1070px", overflow: "hidden" };
 
   const videoRef = useRef();
   const [video, setVideo] = useState(false);
+  const [videoUrl, setVideoUrl] = useState(null);
 
   return (
     <div>
@@ -33,12 +34,13 @@ const CardPick = forwardRef((props, ref) => {
           <ReactPlayer
             ref={videoRef}
             className="CookiePickPlayer"
-            url={"video/CookiePick.mp4"}
+            url={videoUrl}
             width="100%"
             height="100%"
             playing={video}
             muted={true}
             controls={false}
+            loop={true}
             onEnded={() => {
               endVideo();
             }}
