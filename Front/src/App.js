@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Auction, Board, Collection, Main, Open, Shop } from "./page";
+import { Auction, Board, Collection, Login, Main, Open, Shop } from "./page";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Open />} />
         <Route path="/main" element={<Main />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/auction" element={<Auction />} />
         <Route path="/board" element={<Board />} />
         <Route path="/collection" element={<Collection />} />
