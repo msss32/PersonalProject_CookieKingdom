@@ -16,14 +16,12 @@ const CardPick = forwardRef((props, ref) => {
 
   const endVideo = (a) => {
     document.querySelector(".cardPickBack").style.display = "none";
-    document.querySelector(".cardPickBtn").style.display = "block";
     setVideoUrl(null);
   };
 
   const videoPlayerStyle = { margin: 0, height: "1070px", overflow: "hidden" };
 
   const videoRef = useRef();
-  const [video, setVideo] = useState(false);
   const [videoUrl, setVideoUrl] = useState(null);
 
   return (
@@ -37,7 +35,7 @@ const CardPick = forwardRef((props, ref) => {
             url={videoUrl}
             width="100%"
             height="100%"
-            playing={video}
+            playing={true}
             muted={true}
             controls={false}
             onEnded={() => {
@@ -46,15 +44,8 @@ const CardPick = forwardRef((props, ref) => {
             style={videoPlayerStyle}
           />
         </div>
-        <div className="exit">
-          <button onClick={endVideo}>닫기</button>
-          <button
-            onClick={() => {
-              setVideo(!video);
-            }}
-          >
-            재생하기
-          </button>
+        <div className="skip">
+          <button onClick={endVideo}>스킵</button>
         </div>
       </div>
     </div>

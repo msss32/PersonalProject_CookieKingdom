@@ -23,7 +23,7 @@
   justify-content: center;
 }
 
-.background {
+.backgroundOpen {
   width: 100%;
 }
 
@@ -322,10 +322,10 @@ a:-webkit-any-link {
 }
 
 @keyframes cardRotateOut {
-  to {
+  0% {
     top: 50%;
   }
-  from {
+  100% {
     top: 150%;
   }
 }

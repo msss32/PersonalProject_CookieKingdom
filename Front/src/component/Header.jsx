@@ -1,5 +1,4 @@
 import React from "react";
-import { Logo2 } from "../img";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -8,7 +7,7 @@ const Header = () => {
       <ul>
         <li>
           <Link to="/main">
-            <img src={Logo2} alt="logo" width="130px" />
+            <img src={`img/Logo2.png`} alt="logo" width="130px" />
           </Link>
         </li>
         <li>

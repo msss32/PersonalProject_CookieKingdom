@@ -2,26 +2,6 @@ import React, { useState, useEffect } from "react";
 import "../css/open.css";
 import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
-import {
-  background1,
-  Logo,
-  Logo2,
-  rightImg,
-  sign,
-  store1,
-  store2,
-  store3,
-  store4,
-  Card_Back,
-} from "../img";
-import {
-  DarknessWitch,
-  FireFairy,
-  FrostQueen,
-  MoonLight,
-  SeaFairy,
-  WindArcher,
-} from "../img/Legendary";
 
 const Open = () => {
   const [playIndex, setPlayIndex] = useState(0);
@@ -75,16 +55,16 @@ const Open = () => {
   });
 
   const legendaryCard = [
-    DarknessWitch,
-    FireFairy,
-    FrostQueen,
-    MoonLight,
-    SeaFairy,
-    WindArcher,
+    { url: "img/Legendary/DarknessWitch.png" },
+    { url: "img/Legendary/FireFairy.png" },
+    { url: "img/Legendary/FrostQueen.png" },
+    { url: "img/Legendary/MoonLight.png" },
+    { url: "img/Legendary/SeaFairy.png" },
+    { url: "img/Legendary/WindArcher.png" },
   ];
 
   const handleRandomCard =
-    legendaryCard[Math.floor(Math.random() * legendaryCard.length)];
+    legendaryCard[Math.floor(Math.random() * legendaryCard.length)].url;
 
   return (
     <div>
@@ -110,7 +90,7 @@ const Open = () => {
             href="https://play.google.com/store/apps/details?id=com.devsisters.ck"
             target="_blank"
           >
-            <img src={store1} alt="스토어1" className="store" />
+            <img src={`img/store1.png`} alt="스토어1" className="store" />
             Google Play
           </a>
         </div>
@@ -120,7 +100,7 @@ const Open = () => {
             href="https://apps.apple.com/kr/app/%EC%BF%A0%ED%82%A4%EB%9F%B0-%ED%82%B9%EB%8D%A4/id1509450845"
             target="_blank"
           >
-            <img src={store2} alt="스토어2" className="store" />
+            <img src={`img/store2.png`} alt="스토어2" className="store" />
             App Store
           </a>
         </div>
@@ -130,7 +110,7 @@ const Open = () => {
             href="https://m.onestore.co.kr/mobilepoc/apps/appsDetail.omp?prodId=0000751155"
             target="_blank"
           >
-            <img src={store3} alt="스토어3" className="store" />
+            <img src={`img/store3.png`} alt="스토어3" className="store" />
             One Store
           </a>
         </div>
@@ -140,35 +120,39 @@ const Open = () => {
             href="https://galaxystore.samsung.com/detail/com.devsisters.ck"
             target="_blank"
           >
-            <img src={store4} alt="스토어4" className="store" />
+            <img src={`img/store4.png`} alt="스토어4" className="store" />
             Galaxy Store
           </a>
         </div>
       </div>
       <Link to={"/main"} target="_blank">
-        <img src={Logo} alt="로고" className="logo" />
+        <img src={`img/Logo.png`} alt="로고" className="logo" />
       </Link>
-      <img src={sign} alt="사인" className="sign" />
+      <img src={`img/sign.png`} alt="사인" className="sign" />
       <div className="cgTxt">카드게임</div>
       <Link>
         <span className="scroll" onClick={scrollIntro}></span>
       </Link>
       <div className="scrollTxt">아래로</div>
       <div className="opening">
-        <img src={background1} alt="배경" className="background" />
+        <img
+          src={`img/backgroundOpen.jpg`}
+          alt="배경"
+          className="backgroundOpen"
+        />
         <div className="leftTxt">
-          <img src={Logo2} alt="logo" className="logo2" />
+          <img src={`img/Logo2.png`} alt="logo" className="logo2" />
         </div>
         <div className="openImg">
           <div className="card front">
             <img src={handleRandomCard} alt="card" />
           </div>
           <div className="card back">
-            <img src={Card_Back} alt="card" />
+            <img src={`img/Card_Back.png`} alt="card" />
           </div>
         </div>
         <div className="rightTxt">
-          <img src={rightImg} alt="text" width="450px"></img>
+          <img src={`img/rightImg.png`} alt="text" width="450px"></img>
         </div>
       </div>
     </div>
