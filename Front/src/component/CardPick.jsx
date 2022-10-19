@@ -40,7 +40,6 @@ const CardPick = forwardRef((props, ref) => {
             playing={video}
             muted={true}
             controls={false}
-            loop={true}
             onEnded={() => {
               endVideo();
             }}
