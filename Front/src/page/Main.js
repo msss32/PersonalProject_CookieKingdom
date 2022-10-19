@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { userActions, joinActions, loginActions } from "../redux/Store";
+import { userAction, joinAction, loginAction } from "../redux/store";
 import { useNavigate } from "react-router-dom";
 import "../css/main.css";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -43,18 +43,18 @@ const Main = () => {
   // const isLogin = useSelector((state) => state.login.isLogin);
 
   const joinIdHandler = (e) => {
-    dispatch(joinActions.joinId(e.target.value));
+    dispatch(joinAction.joinId(e.target.value));
   };
   const joinPwHandler = (e) => {
-    dispatch(joinActions.joinPw(e.target.value));
+    dispatch(joinAction.joinPw(e.target.value));
   };
   const joinNameHandler = (e) => {
-    dispatch(joinActions.joinName(e.target.value));
+    dispatch(joinAction.joinName(e.target.value));
   };
   const joinSubmit = (e) => {
     const container = document.getElementById("container");
     if (joinInput.id !== "" && joinInput.pw !== "" && joinInput.name !== "") {
-      dispatch(userActions.signUp(joinInput));
+      dispatch(userAction.signUp(joinInput));
       e.preventDefault();
       container.classList.remove("right-panel-active");
     } else if (joinInput.id === "") {
@@ -76,7 +76,7 @@ const Main = () => {
     e.preventDefault();
     for (let i = 0; i < user.length; i++) {
       if (user[i].id === idInput.value && user[i].pw === pwInput.value) {
-        dispatch(loginActions.login(idInput.value, pwInput.value));
+        dispatch(loginAction.login(idInput.value, pwInput.value));
         nav("/");
       } else if (user[i].id !== idInput.value) {
         alert("아이디를 확인해주세요");
