@@ -6,6 +6,7 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper";
 import Header from "../component/Header";
 import CardPick from "../component/CardPick";
+import { Link } from "react-router-dom";
 
 const Main = () => {
   const collection = [
@@ -117,7 +118,6 @@ const Main = () => {
   const cardPickRef = useRef();
   const cardPick = () => {
     cardPickRef.current.cardPick();
-    document.querySelector(".cardPickBtn").style.display = "none";
   };
 
   return (
@@ -191,7 +191,7 @@ const Main = () => {
         </SwiperSlide>
       </Swiper>
       <div className="cardPickMain">
-        <img src={"img/Card_Front.png"} alt="card" width={"250px"} />
+        <img src={"img/Card_Front.png"} alt="card" width={"300px"} />
         <div
           style={{
             position: "absolute",
@@ -204,6 +204,14 @@ const Main = () => {
             카드뽑기
           </button>
         </div>
+      </div>
+      <div className="toLoginBox">
+        <div className="welcomeImg">
+          <img src="img/welcome.png" alt="welcome" width="300px" />
+        </div>
+        <Link to="/login">
+          <div className="goLogin">로그인하러 가기</div>
+        </Link>
       </div>
       <CardPick ref={cardPickRef} />
     </div>
