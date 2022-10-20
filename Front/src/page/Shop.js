@@ -1,9 +1,19 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { Header } from "../component";
 import CardPick from "../component/CardPick";
-import "../css/shop.css";
 
 const Shop = () => {
+  useEffect(() => {
+    const css = document.createElement("link");
+    css.rel = "stylesheet";
+    css.href = "css/shop.css";
+
+    document.head.appendChild(css);
+
+    return () => {
+      document.head.removeChild(css);
+    };
+  }, []);
   const cardPickRef = useRef();
   const cardPick = () => {
     cardPickRef.current.cardPick();

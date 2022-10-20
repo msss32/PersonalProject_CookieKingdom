@@ -51,13 +51,14 @@ ul {
 }
 
 .cardPick {
-  background-color: none;
+  background-color: black;
   position: absolute;
   opacity: 1;
   top: 50%;
   left: 50%;
   width: 1000px;
   height: 700px;
+  overflow: hidden;
   transform: translate(-50%, -50%);
 }
 
@@ -65,6 +66,7 @@ ul {
   position: absolute;
   top: 17.75%;
   right: 2.2%;
+  display: none;
 }
 
 .skipBtn {
@@ -115,4 +117,68 @@ ul {
 
 .navBar ul li img {
   margin-top: 15px;
+}
+
+.cardPack {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 300px;
+  display: none;
+  animation: 0.7s ease-in;
+}
+
+.card {
+  position: relative;
+  width: 200px;
+  height: 300px;
+}
+
+.cardEffect {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  animation: 4s ease-in-out;
+}
+
+@keyframes lightBoom {
+  0% {
+    background-color: transparent;
+    box-shadow: 0 0 10px transparent;
+  }
+  50% {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+      0 0 30px rgba(255, 255, 255, 0.8), 0 0 50px white, 0 0 70px white,
+      0 0 90px white, 0 0 110px white, 0 0 130px white, 0 0 150px white,
+      0 0 170px white, 0 0 190px white, 0 0 210px white;
+  }
+}
+
+@keyframes upOut {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    top: -50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.cardOne {
+  width: 200px;
+  height: 300px;
 }

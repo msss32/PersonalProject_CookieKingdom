@@ -10,13 +10,21 @@ const CardPick = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     cardPick: () => {
       document.querySelector(".cardPickBack").style.display = "block";
+      document.querySelector(".skip").style.display = "block";
       setVideoUrl("video/CookiePick.mp4");
     },
   }));
 
-  const endVideo = (a) => {
-    document.querySelector(".cardPickBack").style.display = "none";
+  const endVideo = () => {
     setVideoUrl(null);
+    document.querySelector(".skip").style.display = "none";
+    document.querySelector(".cardPack").style.display = "block";
+    setTimeout(() => {
+      document.querySelector(".cardEffect").style.animationName = "lightBoom";
+    }, 500);
+    setTimeout(() => {
+      document.querySelector(".cardPack").style.animationName = "upOut";
+    }, 4500);
   };
 
   const videoPlayerStyle = { margin: 0, height: "1070px", overflow: "hidden" };
@@ -38,13 +46,40 @@ const CardPick = forwardRef((props, ref) => {
             playing={true}
             muted={true}
             controls={false}
-            // onEnded={() => {
-            //   endVideo();
-            // }}
+            onEnded={() => {
+              endVideo();
+            }}
             style={videoPlayerStyle}
           />
           <div className="skip">
             <button onClick={endVideo} className="skipBtn"></button>
+          </div>
+          <div className="cardPack">
+            <div className="card">
+              <img src="img/Card_Back.png" alt="card" className="cardOne" />
+              <div className="cardEffect"></div>
+            </div>
+            <div className="card">
+              <img src="img/Card_Back.png" alt="card" className="cardTwo" />
+            </div>
+            <div className="card">
+              <img src="img/Card_Back.png" alt="card" className="cardThree" />
+            </div>
+            <div className="card">
+              <img src="img/Card_Back.png" alt="card" className="cardFour" />
+            </div>
+            <div className="card">
+              <img src="img/Card_Back.png" alt="card" className="cardFive`" />
+            </div>
+            <div className="card">
+              <img src="img/Card_Back.png" alt="card" className="cardTwo" />
+            </div>
+            <div className="card">
+              <img src="img/Card_Back.png" alt="card" className="cardTwo" />
+            </div>
+            <div className="card">
+              <img src="img/Card_Back.png" alt="card" className="cardTwo" />
+            </div>
           </div>
         </div>
       </div>
