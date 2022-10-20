@@ -1,0 +1,68 @@
+@font-face {
+  font-family: "Cookie-Run-R";
+  src: url("../font/CookieRun\ Regular.ttf");
+}
+@font-face {
+  font-family: "Cookie-Run-T";
+  src: url("../font/CookieRun\ Black.ttf");
+}
+@font-face {
+  font-family: "Cookie-Run-B";
+  src: url("../font/CookieRun\ Bold.ttf");
+}
+
+.gradeBtn {
+  position: absolute;
+  top: 17%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Cookie-Run-R";
+  font-size: 35px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.btn {
+  margin: 30px;
+}
+
+.common.active {
+  color: rgb(175, 61, 61);
+}
+
+.magic.active {
+  color: rgb(19, 113, 255);
+}
+
+.rare.active {
+  color: rgb(200, 0, 227);
+}
+
+.unique.active {
+  color: rgb(255, 242, 0);
+}
+
+.epic.active {
+  color: rgb(242, 9, 9);
+}
+
+.legendary.active {
+  color: rgb(48, 242, 9);
+}
+
+.gradeList {
+  width: 1200px;
+  height: 750px;
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  top: 59%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: center;
+  overflow-y: scroll;
+}
+
+.gradeCard {
+  margin: 15px;
+}

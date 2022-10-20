@@ -84,6 +84,14 @@ const Login = () => {
 
   return (
     <div>
+      <div className="backgroundLogin">
+        <img
+          src="img/backgroundLogin.png"
+          alt="back"
+          width={"100%"}
+          height={"100%"}
+        />
+      </div>
       <div className="contain">
         <div className="externalContainer" id="container">
           <div className="form-container sign-up-container">
@@ -112,6 +120,13 @@ const Login = () => {
                 placeholder="닉네임"
                 onChange={joinNameHandler}
               />
+              <input
+                className="externalInput"
+                type=""
+                placeholder="PhoneNumber(-없이 적어주세요)"
+                onChange={joinNameHandler}
+              />
+              <br />
               <br />
               <button className="externalBtn">가입하기</button>
             </form>
@@ -149,7 +164,7 @@ const Login = () => {
           <div className="overlay-container">
             <div className="overlay">
               <div className="overlay-panel overlay-left">
-                <h1 className="externalh1">헤이 Bro!</h1>
+                <h1 className="externalh1">Hey Friend!</h1>
                 <p className="externalP">
                   회원가입을 완료했다면 <br />
                   아래 버튼으로 로그인을 부탁해!
@@ -159,9 +174,9 @@ const Login = () => {
                 </button>
               </div>
               <div className="overlay-panel overlay-right">
-                <h1 className="externalh1">안녕 친구들?</h1>
+                <h1 className="externalh1">Hi Cooooooookiiiee~</h1>
                 <p className="externalP">
-                  혹시 가입하지 않은 친구가 있다면 <br />
+                  혹시 아직 가입하지 않은 친구가 있다면 <br />
                   아래의 버튼을 눌러줘
                 </p>
                 <button className="ghost externalBtn" id="signUp">
