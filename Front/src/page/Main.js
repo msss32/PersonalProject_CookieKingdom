@@ -1,5 +1,4 @@
-import React, { useRef } from "react";
-import "../css/main.css";
+import React, { useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -9,6 +8,18 @@ import CardPick from "../component/CardPick";
 import { Link } from "react-router-dom";
 
 const Main = () => {
+  useEffect(() => {
+    const css = document.createElement("link");
+    css.rel = "stylesheet";
+    css.href = "css/main.css";
+
+    document.head.appendChild(css);
+
+    return () => {
+      document.head.removeChild(css);
+    };
+  }, []);
+
   const collection = [
     { url: "img/Common/Blueberry.png" },
     { url: "img/Common/Brave.png" },

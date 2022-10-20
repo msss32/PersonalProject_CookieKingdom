@@ -1,16 +1,3 @@
-@font-face {
-  font-family: "Cookie-Run-R";
-  src: url("../font/CookieRun\ Regular.ttf");
-}
-@font-face {
-  font-family: "Cookie-Run-T";
-  src: url("../font/CookieRun\ Black.ttf");
-}
-@font-face {
-  font-family: "Cookie-Run-B";
-  src: url("../font/CookieRun\ Bold.ttf");
-}
-
 .gradeBtn {
   position: absolute;
   top: 17%;

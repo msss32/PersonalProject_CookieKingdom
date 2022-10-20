@@ -1,25 +1,12 @@
-@font-face {
-  font-family: "Cookie-Run-R";
-  src: url("../font/CookieRun\ Regular.ttf");
-}
-@font-face {
-  font-family: "Cookie-Run-T";
-  src: url("../font/CookieRun\ Black.ttf");
-}
-@font-face {
-  font-family: "Cookie-Run-B";
-  src: url("../font/CookieRun\ Bold.ttf");
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
 html,
 body {
   position: relative;
   height: 100%;
+}
+
+a:-webkit-any-link {
+  text-decoration: none;
+  color: black;
 }
 
 .mySwiper1 {
@@ -194,7 +181,7 @@ body {
   border-radius: 50%;
   width: 0px;
   height: 3px;
-  animation: underliner 3s linear infinite;
+  animation: underliner 2s linear infinite;
 }
 
 @keyframes underliner {

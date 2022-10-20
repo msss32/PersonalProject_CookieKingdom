@@ -5,6 +5,19 @@ body {
   user-select: none;
 }
 
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+@font-face {
+  font-family: "Happiness-Sans-Title";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Happiness-Sans-Title.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
 @font-face {
   font-family: "Cookie-Run-R";
   src: url("font/CookieRun\ Regular.ttf");
@@ -50,8 +63,17 @@ body {
 
 .skip {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 17.75%;
+  right: 2.2%;
+}
+
+.skipBtn {
+  width: 90px;
+  height: 30px;
+  border: none;
+  color: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .header {

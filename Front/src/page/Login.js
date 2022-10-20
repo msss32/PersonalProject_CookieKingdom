@@ -1,10 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { joinAction } from "../redux/reducer/joinSlice";
 import { loginAction } from "../redux/reducer/loginSlice";
 import { userAction } from "../redux/reducer/userSlice";
-import { useNavigate } from "react-router-dom";
-import "../css/login.css";
 
 const Login = () => {
   useEffect(() => {
@@ -22,31 +19,29 @@ const Login = () => {
 
     const css = document.createElement("link");
     css.rel = "stylesheet";
-    css.href =
+    css.href = "../css/login.css";
+
+    const externalCss = document.createElement("link");
+    externalCss.rel = "stylesheet";
+    externalCss.href =
       "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css";
 
+    document.head.appendChild(externalCss);
     document.head.appendChild(css);
 
     return () => {
+      document.head.removeChild(externalCss);
       document.head.removeChild(css);
     };
   }, []);
 
-  const nav = useNavigate();
+  const idInput = useRef();
+  const pwInput = useRef();
+
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.users);
   const joinInput = useSelector((state) => state.join);
   // const isLogin = useSelector((state) => state.login.isLogin);
 
-  const joinIdHandler = (e) => {
-    dispatch(joinAction.joinId(e.target.value));
-  };
-  const joinPwHandler = (e) => {
-    dispatch(joinAction.joinPw(e.target.value));
-  };
-  const joinNameHandler = (e) => {
-    dispatch(joinAction.joinName(e.target.value));
-  };
   const joinSubmit = (e) => {
     const container = document.getElementById("container");
     if (joinInput.id !== "" && joinInput.pw !== "" && joinInput.name !== "") {
@@ -65,21 +60,8 @@ const Login = () => {
     }
   };
 
-  const idInput = useRef();
-  const pwInput = useRef();
-
-  const login = (e) => {
-    e.preventDefault();
-    for (let i = 0; i < user.length; i++) {
-      if (user[i].id === idInput.value && user[i].pw === pwInput.value) {
-        dispatch(loginAction.login(idInput.value, pwInput.value));
-        nav("/");
-      } else if (user[i].id !== idInput.value) {
-        alert("아이디를 확인해주세요");
-      } else if (user[i].pw !== pwInput.value) {
-        alert("비밀번호를 확인해주세요");
-      }
-    }
+  const login = () => {
+    dispatch(loginAction.login(idInput.value, pwInput.value));
   };
 
   return (
@@ -101,30 +83,22 @@ const Login = () => {
                 아래 빈칸에 아이디와 이메일, <br />
                 비밀번호를 입력해주세요!
               </span>
-              <input
-                className="externalInput"
-                type="text"
-                placeholder="ID"
-                onChange={joinIdHandler}
-              />
+              <input className="externalInput" type="text" placeholder="ID" />
               <input
                 className="externalInput"
                 type="password"
                 placeholder="Password"
-                onChange={joinPwHandler}
                 autoComplete="on"
               />
               <input
                 className="externalInput"
                 type="name"
                 placeholder="닉네임"
-                onChange={joinNameHandler}
               />
               <input
                 className="externalInput"
                 type=""
                 placeholder="PhoneNumber(-없이 적어주세요)"
-                onChange={joinNameHandler}
               />
               <br />
               <br />

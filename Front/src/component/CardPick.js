@@ -38,14 +38,14 @@ const CardPick = forwardRef((props, ref) => {
             playing={true}
             muted={true}
             controls={false}
-            onEnded={() => {
-              endVideo();
-            }}
+            // onEnded={() => {
+            //   endVideo();
+            // }}
             style={videoPlayerStyle}
           />
-        </div>
-        <div className="skip">
-          <button onClick={endVideo}>스킵</button>
+          <div className="skip">
+            <button onClick={endVideo} className="skipBtn"></button>
+          </div>
         </div>
       </div>
     </div>

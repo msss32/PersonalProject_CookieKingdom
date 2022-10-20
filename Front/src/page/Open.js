@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from "react";
-import "../css/open.css";
 import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
 
 const Open = () => {
+  useEffect(() => {
+    const css = document.createElement("link");
+    css.rel = "stylesheet";
+    css.href = "css/open.css";
+
+    document.head.appendChild(css);
+
+    return () => {
+      document.head.removeChild(css);
+    };
+  }, []);
+
   const [playIndex, setPlayIndex] = useState(0);
   const playList = [
     { index: 0, url: "video/video1.mp4" },

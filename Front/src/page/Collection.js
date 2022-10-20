@@ -1,8 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Header } from "../component";
-import "../css/collection.css";
 
 const Collection = () => {
+  useEffect(() => {
+    const css = document.createElement("link");
+    css.rel = "stylesheet";
+    css.href = "css/collection.css";
+
+    document.head.appendChild(css);
+
+    return () => {
+      document.head.removeChild(css);
+    };
+  }, []);
+
   const [collectionList, setCollectionList] = useState(null);
   function collectTab(el, index) {
     setCollectionList(index);
