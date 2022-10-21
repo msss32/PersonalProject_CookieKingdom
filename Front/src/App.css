@@ -56,7 +56,7 @@ ul {
   opacity: 1;
   top: 50%;
   left: 50%;
-  width: 1000px;
+  width: 1200px;
   height: 700px;
   overflow: hidden;
   transform: translate(-50%, -50%);
@@ -64,18 +64,19 @@ ul {
 
 .skip {
   position: absolute;
-  top: 17.75%;
-  right: 2.2%;
+  top: 11.75%;
+  right: 2.3%;
   display: none;
 }
 
 .skipBtn {
-  width: 90px;
+  width: 105px;
   height: 30px;
   border: none;
   color: none;
   background-color: transparent;
   cursor: pointer;
+  border: none;
 }
 
 .header {
@@ -127,11 +128,10 @@ ul {
   width: 200px;
   height: 300px;
   display: none;
-  animation: 0.7s ease-in;
 }
 
 .card {
-  position: relative;
+  position: absolute;
   width: 200px;
   height: 300px;
 }
@@ -165,20 +165,139 @@ ul {
   }
 }
 
-@keyframes upOut {
+@keyframes upOut1 {
   0% {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  100% {
-    top: -50%;
+  50% {
+    top: -250%;
     left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  70% {
+    top: -250%;
+    left: -170%;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    top: -10%;
+    left: -170%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes upOut2 {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    top: -250%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  70% {
+    top: -250%;
+    left: -170%;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    top: -10%;
+    left: -170%;
     transform: translate(-50%, -50%);
   }
 }
 
 .cardOne {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 200px;
   height: 300px;
+  animation: 1s ease-in;
+}
+.cardTwo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 300px;
+  animation: 1s ease-in;
+}
+.cardThree {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 300px;
+  animation: 1s ease-in;
+}
+.cardFour {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 300px;
+  animation: 1s ease-in;
+}
+.cardFive {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 300px;
+  animation: 1s ease-in;
+}
+.cardSix {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 300px;
+  animation: 1s ease-in;
+}
+.cardSeven {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 300px;
+  animation: 1s ease-in;
+}
+.cardEight {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 300px;
+  animation: 1s ease-in;
+}
+.cardNine {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 300px;
+  animation: 1s ease-in;
+}
+.cardTen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 300px;
+  animation: 1s ease-in;
 }

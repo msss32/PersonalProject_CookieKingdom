@@ -23,7 +23,7 @@ const CardPick = forwardRef((props, ref) => {
       document.querySelector(".cardEffect").style.animationName = "lightBoom";
     }, 500);
     setTimeout(() => {
-      document.querySelector(".cardPack").style.animationName = "upOut";
+      document.querySelector(".cardOne").style.animationName = "upOut1";
     }, 4500);
   };
 
@@ -69,16 +69,22 @@ const CardPick = forwardRef((props, ref) => {
               <img src="img/Card_Back.png" alt="card" className="cardFour" />
             </div>
             <div className="card">
-              <img src="img/Card_Back.png" alt="card" className="cardFive`" />
+              <img src="img/Card_Back.png" alt="card" className="cardFive" />
             </div>
             <div className="card">
-              <img src="img/Card_Back.png" alt="card" className="cardTwo" />
+              <img src="img/Card_Back.png" alt="card" className="cardSix" />
             </div>
             <div className="card">
-              <img src="img/Card_Back.png" alt="card" className="cardTwo" />
+              <img src="img/Card_Back.png" alt="card" className="cardSeven" />
             </div>
             <div className="card">
-              <img src="img/Card_Back.png" alt="card" className="cardTwo" />
+              <img src="img/Card_Back.png" alt="card" className="cardEight" />
+            </div>
+            <div className="card">
+              <img src="img/Card_Back.png" alt="card" className="cardNine" />
+            </div>
+            <div className="card">
+              <img src="img/Card_Back.png" alt="card" className="cardTen" />
             </div>
           </div>
         </div>
