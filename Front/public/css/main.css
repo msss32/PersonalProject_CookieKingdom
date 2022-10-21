@@ -180,8 +180,8 @@ a:-webkit-any-link {
   transform: translate(-50%, -50%);
   border-radius: 50%;
   width: 0px;
-  height: 3px;
-  animation: underliner 2s linear infinite;
+  height: 5px;
+  animation: underliner 2s linear forwards infinite;
 }
 
 @keyframes underliner {

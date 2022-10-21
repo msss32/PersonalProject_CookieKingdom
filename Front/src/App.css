@@ -130,12 +130,6 @@ ul {
   display: none;
 }
 
-.card {
-  position: absolute;
-  width: 200px;
-  height: 300px;
-}
-
 .cardEffect {
   content: "";
   position: absolute;
@@ -146,6 +140,7 @@ ul {
   height: 50px;
   border-radius: 50%;
   animation: 4s ease-in-out;
+  z-index: 3;
 }
 
 @keyframes lightBoom {
@@ -201,103 +196,277 @@ ul {
   }
   70% {
     top: -250%;
-    left: -170%;
+    left: -60%;
     transform: translate(-50%, -50%);
   }
   100% {
     top: -10%;
+    left: -60%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes upOut3 {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    top: -250%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  70% {
+    top: -250%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    top: -10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+@keyframes upOut4 {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    top: -250%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  70% {
+    top: -250%;
+    left: 160%;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    top: -10%;
+    left: 160%;
+    transform: translate(-50%, -50%);
+  }
+}
+@keyframes upOut5 {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    top: -250%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  70% {
+    top: -250%;
+    left: 270%;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    top: -10%;
+    left: 270%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes upOut6 {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    top: -250%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  70% {
+    top: -250%;
+    left: -170%;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    top: 110%;
     left: -170%;
     transform: translate(-50%, -50%);
   }
 }
 
-.cardOne {
+@keyframes upOut7 {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    top: -250%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  70% {
+    top: -250%;
+    left: -60%;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    top: 110%;
+    left: -60%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes upOut8 {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    top: -250%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  70% {
+    top: -250%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    top: 110%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+@keyframes upOut9 {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    top: -250%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  70% {
+    top: -250%;
+    left: 160%;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    top: 110%;
+    left: 160%;
+    transform: translate(-50%, -50%);
+  }
+}
+@keyframes upOut10 {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    top: -250%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  70% {
+    top: -250%;
+    left: 270%;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    top: 110%;
+    left: 270%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.pickCard {
   position: absolute;
+  width: 200px;
+  height: 300px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 200px;
-  height: 300px;
+  perspective-origin: center;
+}
+
+.pickCard .cardOne {
+  width: 100%;
+  backface-visibility: hidden;
+  transition: 1s;
+}
+
+.cardOne {
+  position: absolute;
   animation: 1s ease-in;
+  animation-fill-mode: forwards;
 }
 .cardTwo {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 200px;
-  height: 300px;
   animation: 1s ease-in;
+  animation-fill-mode: forwards;
 }
 .cardThree {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 200px;
-  height: 300px;
   animation: 1s ease-in;
+  animation-fill-mode: forwards;
 }
 .cardFour {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 200px;
-  height: 300px;
   animation: 1s ease-in;
+  animation-fill-mode: forwards;
 }
 .cardFive {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 200px;
-  height: 300px;
   animation: 1s ease-in;
+  animation-fill-mode: forwards;
 }
 .cardSix {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 200px;
-  height: 300px;
   animation: 1s ease-in;
+  animation-fill-mode: forwards;
 }
 .cardSeven {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 200px;
-  height: 300px;
   animation: 1s ease-in;
+  animation-fill-mode: forwards;
 }
 .cardEight {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 200px;
-  height: 300px;
   animation: 1s ease-in;
+  animation-fill-mode: forwards;
 }
 .cardNine {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 200px;
-  height: 300px;
   animation: 1s ease-in;
+  animation-fill-mode: forwards;
 }
 .cardTen {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 200px;
-  height: 300px;
   animation: 1s ease-in;
+  animation-fill-mode: forwards;
+}
+
+.pickFront {
+  position: absolute;
+  height: 300px;
+  transform: rotateY(-180deg);
+}
+.frontTurn {
+  transform: rotateY(0deg);
+}
+
+.pickBack {
+  position: absolute;
+  height: 300px;
+  transform: rotateY(0deg);
+}
+.backTurn {
+  transform: rotateY(180deg);
 }

@@ -308,9 +308,3 @@ a:-webkit-any-link {
     top: 150%;
   }
 }
-
-.newCard {
-  position: absolute;
-  top: 75%;
-  width: 300px;
-}
