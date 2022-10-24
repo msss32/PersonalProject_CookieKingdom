@@ -103,28 +103,18 @@ const Main = () => {
     { url: "img/Legendary/WindArcher.png" },
   ];
 
-  const handleRandomCard1 =
-    collection[Math.floor(Math.random() * collection.length)].url;
-  const handleRandomCard2 =
-    collection[Math.floor(Math.random() * collection.length)].url;
-  const handleRandomCard3 =
-    collection[Math.floor(Math.random() * collection.length)].url;
-  const handleRandomCard4 =
-    collection[Math.floor(Math.random() * collection.length)].url;
-  const handleRandomCard5 =
-    collection[Math.floor(Math.random() * collection.length)].url;
-  const handleRandomCard6 =
-    collection[Math.floor(Math.random() * collection.length)].url;
-  const handleRandomCard7 =
-    collection[Math.floor(Math.random() * collection.length)].url;
-  const handleRandomCard8 =
-    collection[Math.floor(Math.random() * collection.length)].url;
-  const handleRandomCard9 =
-    collection[Math.floor(Math.random() * collection.length)].url;
-  const handleRandomCard10 =
-    collection[Math.floor(Math.random() * collection.length)].url;
-  const handleRandomCard11 =
-    collection[Math.floor(Math.random() * collection.length)].url;
+  const handleRandomCard = [];
+
+  for (let i = 0; i < 12; i++) {
+    const result =
+      collection[Math.floor(Math.random() * collection.length)].url;
+    if (handleRandomCard.indexOf(result) === -1) {
+      handleRandomCard.push(result);
+    } else {
+      i--;
+    }
+  }
+  console.log(handleRandomCard);
 
   const cardPickRef = useRef();
   const cardPick = () => {
@@ -134,6 +124,21 @@ const Main = () => {
   return (
     <div>
       <Header></Header>
+      <div className="cardPickMain">
+        <img src={"img/Card_Front.png"} alt="card" width={"300px"} />
+        <div
+          style={{
+            position: "absolute",
+            width: "83%",
+            height: "25%",
+            top: "33%",
+          }}
+        >
+          <button className="cardPickBtnMain" onClick={cardPick}>
+            카드뽑기
+          </button>
+        </div>
+      </div>
       <Swiper
         pagination={{
           dynamicBullets: true,
@@ -142,19 +147,19 @@ const Main = () => {
         className="mySwiper1"
       >
         <SwiperSlide>
-          <img src={`img/intro1-cookie.png`} alt="1" />
+          <img src={`img/intro1-cookie.png`} alt="1" width={"1200px"} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`img/intro2-adventure.png`} alt="2" />
+          <img src={`img/intro2-adventure.png`} alt="2" width={"1200px"} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`img/intro3-battle.png`} alt="3" />
+          <img src={`img/intro3-battle.png`} alt="3" width={"1200px"} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`img/intro4-kingdom.png`} alt="4" />
+          <img src={`img/intro4-kingdom.png`} alt="4" width={"1200px"} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`img/intro5-guild.png`} alt="5" />
+          <img src={`img/intro5-guild.png`} alt="5" width={"1200px"} />
         </SwiperSlide>
       </Swiper>
       <Swiper
@@ -168,61 +173,47 @@ const Main = () => {
         className="mySwiper2"
       >
         <SwiperSlide>
-          <img src={handleRandomCard1} alt="1" />
+          <img src={handleRandomCard[1]} alt="1" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={handleRandomCard2} alt="2" />
+          <img src={handleRandomCard[2]} alt="2" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={handleRandomCard3} alt="3" />
+          <img src={handleRandomCard[3]} alt="3" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={handleRandomCard4} alt="4" />
+          <img src={handleRandomCard[4]} alt="4" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={handleRandomCard5} alt="5" />
+          <img src={handleRandomCard[5]} alt="5" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={handleRandomCard6} alt="6" />
+          <img src={handleRandomCard[6]} alt="6" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={handleRandomCard7} alt="7" />
+          <img src={handleRandomCard[7]} alt="7" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={handleRandomCard8} alt="8" />
+          <img src={handleRandomCard[8]} alt="8" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={handleRandomCard9} alt="9" />
+          <img src={handleRandomCard[9]} alt="9" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={handleRandomCard10} alt="10" />
+          <img src={handleRandomCard[10]} alt="10" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={handleRandomCard11} alt="11" />
+          <img src={handleRandomCard[11]} alt="11" />
         </SwiperSlide>
       </Swiper>
-      <div className="cardPickMain">
-        <img src={"img/Card_Front.png"} alt="card" width={"300px"} />
-        <div
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: "25%",
-            top: "30%",
-          }}
-        >
-          <button className="cardPickBtnMain" onClick={cardPick}>
-            카드뽑기
-          </button>
-        </div>
-      </div>
+
       <div className="toLoginBox">
         <div className="welcomeImg">
           <img src="img/welcome.png" alt="welcome" width="300px" />
+          <Link to="/login">
+            <div className="goLogin">로그인하러 가기</div>
+          </Link>
         </div>
-        <Link to="/login">
-          <div className="goLogin">로그인하러 가기</div>
-        </Link>
       </div>
       <CardPick ref={cardPickRef} />
     </div>

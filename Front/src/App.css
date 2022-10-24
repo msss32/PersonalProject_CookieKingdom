@@ -8,6 +8,7 @@ body {
 ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 @font-face {
@@ -85,13 +86,12 @@ ul {
 }
 
 .navBar {
-  position: fixed;
-  width: 100%;
-  height: 100px;
+  position: sticky;
+  top: 0;
   display: flex;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.7);
-  z-index: 3;
+  z-index: 9;
 }
 
 .navBar ul {
@@ -103,7 +103,7 @@ ul {
   color: white;
   font-size: 50px;
   font-family: "Cookie-Run-B";
-  margin: 50px 50px;
+  margin: 0 50px;
 }
 
 .navBar ul li a:-webkit-any-link {
@@ -386,68 +386,103 @@ ul {
   }
 }
 
-.pickCard {
+.pickCard1,
+.pickCard2,
+.pickCard3,
+.pickCard4,
+.pickCard5,
+.pickCard6,
+.pickCard7,
+.pickCard8,
+.pickCard9,
+.pickCard10 {
   position: absolute;
   width: 200px;
   height: 300px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  animation: 1s ease-in;
+  animation-fill-mode: forwards;
   perspective-origin: center;
 }
 
-.pickCard .cardOne {
+.cardOne {
   width: 100%;
   backface-visibility: hidden;
   transition: 1s;
-}
-
-.cardOne {
   position: absolute;
   animation: 1s ease-in;
   animation-fill-mode: forwards;
 }
 .cardTwo {
+  width: 100%;
+  backface-visibility: hidden;
+  transition: 1s;
   position: absolute;
   animation: 1s ease-in;
   animation-fill-mode: forwards;
 }
 .cardThree {
+  width: 100%;
+  backface-visibility: hidden;
+  transition: 1s;
   position: absolute;
   animation: 1s ease-in;
   animation-fill-mode: forwards;
 }
 .cardFour {
+  width: 100%;
+  backface-visibility: hidden;
+  transition: 1s;
   position: absolute;
   animation: 1s ease-in;
   animation-fill-mode: forwards;
 }
 .cardFive {
+  width: 100%;
+  backface-visibility: hidden;
+  transition: 1s;
   position: absolute;
   animation: 1s ease-in;
   animation-fill-mode: forwards;
 }
 .cardSix {
+  width: 100%;
+  backface-visibility: hidden;
+  transition: 1s;
   position: absolute;
   animation: 1s ease-in;
   animation-fill-mode: forwards;
 }
 .cardSeven {
+  width: 100%;
+  backface-visibility: hidden;
+  transition: 1s;
   position: absolute;
   animation: 1s ease-in;
   animation-fill-mode: forwards;
 }
 .cardEight {
+  width: 100%;
+  backface-visibility: hidden;
+  transition: 1s;
   position: absolute;
   animation: 1s ease-in;
   animation-fill-mode: forwards;
 }
 .cardNine {
+  width: 100%;
+  backface-visibility: hidden;
+  transition: 1s;
   position: absolute;
   animation: 1s ease-in;
   animation-fill-mode: forwards;
 }
 .cardTen {
+  width: 100%;
+  backface-visibility: hidden;
+  transition: 1s;
   position: absolute;
   animation: 1s ease-in;
   animation-fill-mode: forwards;

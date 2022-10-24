@@ -23,10 +23,7 @@ const CardPick = forwardRef((props, ref) => {
       document.querySelector(".cardEffect").style.animationName = "lightBoom";
     }, 500);
     setTimeout(() => {
-      document.querySelector(".cardOne.pickFront").style.animationName =
-        "upOut1";
-      document.querySelector(".cardOne.pickBack").style.animationName =
-        "upOut1";
+      document.querySelector(".pickCard1").style.animationName = "upOut1";
     }, 3500);
     setTimeout(() => {
       document.querySelector(".cardTwo.pickFront").style.animationName =
@@ -223,25 +220,27 @@ const CardPick = forwardRef((props, ref) => {
           </div>
           <div className="cardPack">
             <div className="cardEffect"></div>
-            <div className="card" onClick={cardOpen}>
-              <div className="cardOne pickFront">
-                <img
-                  src={randomCard.current[0]}
-                  alt="card"
-                  width={"200px"}
-                  height={"300px"}
-                />
-              </div>
-              <div className="cardOne pickBack">
-                <img
-                  src="img/Card_Back.png"
-                  alt="card"
-                  width={"200px"}
-                  height={"300px"}
-                />
+            <div className="pickCard1" onClick={cardOpen}>
+              <div style={{ position: "relative" }}>
+                <div className="cardOne pickFront">
+                  <img
+                    src={randomCard.current[0]}
+                    alt="card"
+                    width={"200px"}
+                    height={"300px"}
+                  />
+                </div>
+                <div className="cardOne pickBack">
+                  <img
+                    src="img/Card_Back.png"
+                    alt="card"
+                    width={"200px"}
+                    height={"300px"}
+                  />
+                </div>
               </div>
             </div>
-            <div className="card" onClick={cardOpen}>
+            <div className="pickCard2" onClick={cardOpen}>
               <div className="cardTwo pickFront">
                 <img
                   src={randomCard.current[1]}

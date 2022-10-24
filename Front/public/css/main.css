@@ -10,9 +10,10 @@ a:-webkit-any-link {
 }
 
 .mySwiper1 {
-  width: 1500px;
+  width: 1200px;
   height: 700px;
-  top: 100px;
+  top: 50px;
+  display: inline-block;
 }
 
 .mySwiper1 .swiper-slide {
@@ -71,12 +72,11 @@ a:-webkit-any-link {
 }
 
 .cardPickMain {
-  position: absolute;
-  top: 135px;
-  left: 35px;
+  display: inline-block;
   width: 300px;
-  z-index: 2;
+  padding: 30px 30px;
   animation: cardPickMain 1s infinite;
+  vertical-align: top;
 }
 
 @keyframes cardPickMain {
@@ -118,7 +118,7 @@ a:-webkit-any-link {
 }
 .cardPickBtnMain:before {
   content: "";
-  width: 100%;
+  width: 83%;
   height: 100%;
   position: absolute;
   top: 5px;
@@ -129,7 +129,7 @@ a:-webkit-any-link {
 }
 .cardPickBtnMain:after {
   content: "";
-  width: 100%;
+  width: 83%;
   height: 100%;
   position: absolute;
   top: 5px;

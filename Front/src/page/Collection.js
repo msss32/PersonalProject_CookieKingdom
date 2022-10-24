@@ -84,7 +84,7 @@ const Collection = () => {
           </div>
         </div>
       </div>
-      <div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         {collectionList === 1 ? (
           <>
             <ul className="gradeList">
