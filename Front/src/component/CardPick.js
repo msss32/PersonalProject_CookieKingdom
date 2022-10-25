@@ -7,8 +7,16 @@ import React, {
 import ReactPlayer from "react-player";
 
 const CardPick = forwardRef((props, ref) => {
+  const [state, setState] = useState(undefined);
   useImperativeHandle(ref, () => ({
     cardPick: () => {
+      if (state === undefined) {
+        setState([...document.querySelector(".cardPickBack").children]);
+      } else {
+        document.querySelector(".cardPickBack").appendChild(state[0]);
+        document.querySelector(".cardPickBack").appendChild(state[1]);
+        document.querySelector(".cardPickBack").appendChild(state[2]);
+      }
       document.querySelector(".cardPickBack").style.display = "block";
       document.querySelector(".skip").style.display = "block";
       setVideoUrl("video/CookiePick.mp4");
@@ -19,6 +27,7 @@ const CardPick = forwardRef((props, ref) => {
     setVideoUrl();
     document.querySelector(".skip").style.display = "none";
     document.querySelector(".cardPack").style.display = "block";
+    document.querySelector(".cardPack").style.pointerEvents = "none";
     setTimeout(() => {
       document.querySelector(".cardEffect").style.animationName = "lightBoom";
     }, 500);
@@ -26,59 +35,35 @@ const CardPick = forwardRef((props, ref) => {
       document.querySelector(".pickCard1").style.animationName = "upOut1";
     }, 3500);
     setTimeout(() => {
-      document.querySelector(".cardTwo.pickFront").style.animationName =
-        "upOut2";
-      document.querySelector(".cardTwo.pickBack").style.animationName =
-        "upOut2";
+      document.querySelector(".pickCard2").style.animationName = "upOut2";
     }, 3600);
     setTimeout(() => {
-      document.querySelector(".cardThree.pickFront").style.animationName =
-        "upOut3";
-      document.querySelector(".cardThree.pickBack").style.animationName =
-        "upOut3";
+      document.querySelector(".pickCard3").style.animationName = "upOut3";
     }, 3700);
     setTimeout(() => {
-      document.querySelector(".cardFour.pickFront").style.animationName =
-        "upOut4";
-      document.querySelector(".cardFour.pickBack").style.animationName =
-        "upOut4";
+      document.querySelector(".pickCard4").style.animationName = "upOut4";
     }, 3800);
     setTimeout(() => {
-      document.querySelector(".cardFive.pickFront").style.animationName =
-        "upOut5";
-      document.querySelector(".cardFive.pickBack").style.animationName =
-        "upOut5";
+      document.querySelector(".pickCard5").style.animationName = "upOut5";
     }, 3900);
     setTimeout(() => {
-      document.querySelector(".cardSix.pickFront").style.animationName =
-        "upOut6";
-      document.querySelector(".cardSix.pickBack").style.animationName =
-        "upOut6";
+      document.querySelector(".pickCard6").style.animationName = "upOut6";
     }, 4000);
     setTimeout(() => {
-      document.querySelector(".cardSeven.pickFront").style.animationName =
-        "upOut7";
-      document.querySelector(".cardSeven.pickBack").style.animationName =
-        "upOut7";
+      document.querySelector(".pickCard7").style.animationName = "upOut7";
     }, 4100);
     setTimeout(() => {
-      document.querySelector(".cardEight.pickFront").style.animationName =
-        "upOut8";
-      document.querySelector(".cardEight.pickBack").style.animationName =
-        "upOut8";
+      document.querySelector(".pickCard8").style.animationName = "upOut8";
     }, 4200);
     setTimeout(() => {
-      document.querySelector(".cardNine.pickFront").style.animationName =
-        "upOut9";
-      document.querySelector(".cardNine.pickBack").style.animationName =
-        "upOut9";
+      document.querySelector(".pickCard9").style.animationName = "upOut9";
     }, 4300);
     setTimeout(() => {
-      document.querySelector(".cardTen.pickFront").style.animationName =
-        "upOut10";
-      document.querySelector(".cardTen.pickBack").style.animationName =
-        "upOut10";
+      document.querySelector(".pickCard10").style.animationName = "upOut10";
     }, 4400);
+    setTimeout(() => {
+      document.querySelector(".cardPack").style.pointerEvents = "auto";
+    }, 5000);
     randomCardPick();
   };
 
@@ -166,40 +151,78 @@ const CardPick = forwardRef((props, ref) => {
   let randomCard = useRef([]);
 
   const randomCardPick = () => {
+    const frontList = document.querySelectorAll(".pickFront");
+    const backList = document.querySelectorAll(".pickBack");
     for (let i = 0; i < 10; i++) {
+      let className = "";
       const random = Math.floor(Math.random() * 100);
       if (random >= 0 && random < 50) {
+        className = "common";
         randomCard.current.push(
           commonCard[Math.floor(Math.random() * commonCard.length)].url
         );
       } else if (random >= 50 && random < 80) {
+        className = "magic";
         randomCard.current.push(
           magicCard[Math.floor(Math.random() * magicCard.length)].url
         );
       } else if (random >= 80 && random < 95) {
+        className = "rare";
         randomCard.current.push(
           rareCard[Math.floor(Math.random() * rareCard.length)].url
         );
       } else if (random >= 95 && random < 100) {
+        className = "unique";
         randomCard.current.push(
           uniqueCard[Math.floor(Math.random() * uniqueCard.length)].url
         );
       }
-      console.log(Math.floor(Math.random() * 100));
+      setTimeout(() => {
+        frontList[i].classList.add(className);
+        backList[i].classList.add(className);
+      }, 5000);
     }
     setVideoUrl(null);
-    console.log(randomCard.current);
   };
 
-  const cardOpen = () => {
-    document.querySelector(".pickFront").classList.add("frontTurn");
-    document.querySelector(".pickBack").classList.add("backTurn");
+  const cardOpenAll = () => {
+    const pickFront = document.querySelectorAll(".pickFront");
+    const pickBack = document.querySelectorAll(".pickBack");
+    for (let i = 0; i < 10; i++) {
+      pickFront[i].classList.add("frontTurn");
+      pickBack[i].classList.add("backTurn");
+    }
+    document.querySelector(".cardPickExit").style.display = "block";
+  };
+
+  const cardOpenOne = (e) => {
+    const pickFront = document.querySelectorAll(".pickFront");
+    const pickBack = document.querySelectorAll(".pickBack");
+    pickFront[e].classList.add("frontTurn");
+    pickBack[e].classList.add("backTurn");
+    let isOnCount = 0;
+    pickFront.forEach((e) => {
+      if (e.classList.contains("frontTurn")) {
+        isOnCount++;
+      }
+    });
+    if (isOnCount === 10) {
+      document.querySelector(".cardPickExit").style.display = "block";
+    }
+  };
+
+  const cardPickExit = () => {
+    //document.querySelector(".cardPickBack").remove();
+    document.querySelector(".cardPickBack").style.display = "none";
   };
 
   return (
     <div>
       <div className="cardPickBack">
         <div className="background"></div>
+        <div className="cardPickExit" onClick={cardPickExit}>
+          X
+        </div>
         <div className="cardPick">
           <ReactPlayer
             ref={videoRef}
@@ -216,11 +239,21 @@ const CardPick = forwardRef((props, ref) => {
             style={videoPlayerStyle}
           />
           <div className="skip">
-            <button onClick={endVideo} className="skipBtn"></button>
+            <button
+              onClick={() => {
+                endVideo();
+              }}
+              className="skipBtn"
+            ></button>
           </div>
           <div className="cardPack">
             <div className="cardEffect"></div>
-            <div className="pickCard1" onClick={cardOpen}>
+            <div
+              className="pickCard1"
+              onClick={(e) => {
+                cardOpenOne(0);
+              }}
+            >
               <div style={{ position: "relative" }}>
                 <div className="cardOne pickFront">
                   <img
@@ -240,166 +273,229 @@ const CardPick = forwardRef((props, ref) => {
                 </div>
               </div>
             </div>
-            <div className="pickCard2" onClick={cardOpen}>
-              <div className="cardTwo pickFront">
-                <img
-                  src={randomCard.current[1]}
-                  alt="card"
-                  width={"200px"}
-                  height={"300px"}
-                />
-              </div>
-              <div className="cardTwo pickBack">
-                <img
-                  src="img/Card_Back.png"
-                  alt="card"
-                  width={"200px"}
-                  height={"300px"}
-                />
-              </div>
-            </div>
-            <div className="card" onClick={cardOpen}>
-              <div className="cardThree pickFront">
-                <img
-                  src={randomCard.current[2]}
-                  alt="card"
-                  width={"200px"}
-                  height={"300px"}
-                />
-              </div>
-              <div className="cardThree pickBack">
-                <img
-                  src="img/Card_Back.png"
-                  alt="card"
-                  width={"200px"}
-                  height={"300px"}
-                />
+            <div
+              className="pickCard2"
+              onClick={(e) => {
+                cardOpenOne(1);
+              }}
+            >
+              <div style={{ position: "relative" }}>
+                <div className="cardTwo pickFront">
+                  <img
+                    src={randomCard.current[1]}
+                    alt="card"
+                    width={"200px"}
+                    height={"300px"}
+                  />
+                </div>
+                <div className="cardTwo pickBack">
+                  <img
+                    src="img/Card_Back.png"
+                    alt="card"
+                    width={"200px"}
+                    height={"300px"}
+                  />
+                </div>
               </div>
             </div>
-            <div className="card" onClick={cardOpen}>
-              <div className="cardFour pickFront">
-                <img
-                  src={randomCard.current[3]}
-                  alt="card"
-                  width={"200px"}
-                  height={"300px"}
-                />
-              </div>
-              <div className="cardFour pickBack">
-                <img
-                  src="img/Card_Back.png"
-                  alt="card"
-                  width={"200px"}
-                  height={"300px"}
-                />
-              </div>
-            </div>
-            <div className="card" onClick={cardOpen}>
-              <div className="cardFive pickFront">
-                <img
-                  src={randomCard.current[4]}
-                  alt="card"
-                  width={"200px"}
-                  height={"300px"}
-                />
-              </div>
-              <div className="cardFive pickBack">
-                <img
-                  src="img/Card_Back.png"
-                  alt="card"
-                  width={"200px"}
-                  height={"300px"}
-                />
+            <div
+              className="pickCard3"
+              onClick={(e) => {
+                cardOpenOne(2);
+              }}
+            >
+              <div style={{ position: "relative" }}>
+                <div className="cardThree pickFront">
+                  <img
+                    src={randomCard.current[2]}
+                    alt="card"
+                    width={"200px"}
+                    height={"300px"}
+                  />
+                </div>
+                <div className="cardThree pickBack">
+                  <img
+                    src="img/Card_Back.png"
+                    alt="card"
+                    width={"200px"}
+                    height={"300px"}
+                  />
+                </div>
               </div>
             </div>
-            <div className="card" onClick={cardOpen}>
-              <div className="cardSix pickFront">
-                <img
-                  src={randomCard.current[5]}
-                  alt="card"
-                  width={"200px"}
-                  height={"300px"}
-                />
-              </div>
-              <div className="cardSix pickBack">
-                <img
-                  src="img/Card_Back.png"
-                  alt="card"
-                  width={"200px"}
-                  height={"300px"}
-                />
-              </div>
-            </div>
-            <div className="card" onClick={cardOpen}>
-              <div className="cardSeven pickFront">
-                <img
-                  src={randomCard.current[6]}
-                  alt="card"
-                  width={"200px"}
-                  height={"300px"}
-                />
-              </div>
-              <div className="cardSeven pickBack">
-                <img
-                  src="img/Card_Back.png"
-                  alt="card"
-                  width={"200px"}
-                  height={"300px"}
-                />
+            <div
+              className="pickCard4"
+              onClick={(e) => {
+                cardOpenOne(3);
+              }}
+            >
+              <div style={{ position: "relative" }}>
+                <div className="cardFour pickFront">
+                  <img
+                    src={randomCard.current[3]}
+                    alt="card"
+                    width={"200px"}
+                    height={"300px"}
+                  />
+                </div>
+                <div className="cardFour pickBack">
+                  <img
+                    src="img/Card_Back.png"
+                    alt="card"
+                    width={"200px"}
+                    height={"300px"}
+                  />
+                </div>
               </div>
             </div>
-            <div className="card" onClick={cardOpen}>
-              <div className="cardEight pickFront">
-                <img
-                  src={randomCard.current[7]}
-                  alt="card"
-                  width={"200px"}
-                  height={"300px"}
-                />
-              </div>
-              <div className="cardEight pickBack">
-                <img
-                  src="img/Card_Back.png"
-                  alt="card"
-                  width={"200px"}
-                  height={"300px"}
-                />
-              </div>
-            </div>
-            <div className="card" onClick={cardOpen}>
-              <div className="cardNine pickFront">
-                <img
-                  src={randomCard.current[8]}
-                  alt="card"
-                  width={"200px"}
-                  height={"300px"}
-                />
-              </div>
-              <div className="cardNine pickBack">
-                <img
-                  src="img/Card_Back.png"
-                  alt="card"
-                  width={"200px"}
-                  height={"300px"}
-                />
+            <div
+              className="pickCard5"
+              onClick={(e) => {
+                cardOpenOne(4);
+              }}
+            >
+              <div style={{ position: "relative" }}>
+                <div className="cardFive pickFront">
+                  <img
+                    src={randomCard.current[4]}
+                    alt="card"
+                    width={"200px"}
+                    height={"300px"}
+                  />
+                </div>
+                <div className="cardFive pickBack">
+                  <img
+                    src="img/Card_Back.png"
+                    alt="card"
+                    width={"200px"}
+                    height={"300px"}
+                  />
+                </div>
               </div>
             </div>
-            <div className="card" onClick={cardOpen}>
-              <div className="cardTen pickFront">
-                <img
-                  src={randomCard.current[9]}
-                  alt="card"
-                  width={"200px"}
-                  height={"300px"}
-                />
+            <div
+              className="pickCard6"
+              onClick={(e) => {
+                cardOpenOne(5);
+              }}
+            >
+              <div style={{ position: "relative" }}>
+                <div className="cardSix pickFront">
+                  <img
+                    src={randomCard.current[5]}
+                    alt="card"
+                    width={"200px"}
+                    height={"300px"}
+                  />
+                </div>
+                <div className="cardSix pickBack">
+                  <img
+                    src="img/Card_Back.png"
+                    alt="card"
+                    width={"200px"}
+                    height={"300px"}
+                  />
+                </div>
               </div>
-              <div className="cardTen pickBack">
-                <img
-                  src="img/Card_Back.png"
-                  alt="card"
-                  width={"200px"}
-                  height={"300px"}
-                />
+            </div>
+            <div
+              className="pickCard7"
+              onClick={(e) => {
+                cardOpenOne(6);
+              }}
+            >
+              <div style={{ position: "relative" }}>
+                <div className="cardSeven pickFront">
+                  <img
+                    src={randomCard.current[6]}
+                    alt="card"
+                    width={"200px"}
+                    height={"300px"}
+                  />
+                </div>
+                <div className="cardSeven pickBack">
+                  <img
+                    src="img/Card_Back.png"
+                    alt="card"
+                    width={"200px"}
+                    height={"300px"}
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="pickCard8"
+              onClick={(e) => {
+                cardOpenOne(7);
+              }}
+            >
+              <div style={{ position: "relative" }}>
+                <div className="cardEight pickFront">
+                  <img
+                    src={randomCard.current[7]}
+                    alt="card"
+                    width={"200px"}
+                    height={"300px"}
+                  />
+                </div>
+                <div className="cardEight pickBack">
+                  <img
+                    src="img/Card_Back.png"
+                    alt="card"
+                    width={"200px"}
+                    height={"300px"}
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="pickCard9"
+              onClick={(e) => {
+                cardOpenOne(8);
+              }}
+            >
+              <div style={{ position: "relative" }}>
+                <div className="cardNine pickFront">
+                  <img
+                    src={randomCard.current[8]}
+                    alt="card"
+                    width={"200px"}
+                    height={"300px"}
+                  />
+                </div>
+                <div className="cardNine pickBack">
+                  <img
+                    src="img/Card_Back.png"
+                    alt="card"
+                    width={"200px"}
+                    height={"300px"}
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="pickCard10"
+              onClick={(e) => {
+                cardOpenOne(9);
+              }}
+            >
+              <div style={{ position: "relative" }}>
+                <div className="cardTen pickFront">
+                  <img
+                    src={randomCard.current[9]}
+                    alt="card"
+                    width={"200px"}
+                    height={"300px"}
+                  />
+                </div>
+                <div className="cardTen pickBack">
+                  <img
+                    src="img/Card_Back.png"
+                    alt="card"
+                    width={"200px"}
+                    height={"300px"}
+                  />
+                </div>
               </div>
             </div>
           </div>

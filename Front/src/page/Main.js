@@ -114,7 +114,6 @@ const Main = () => {
       i--;
     }
   }
-  console.log(handleRandomCard);
 
   const cardPickRef = useRef();
   const cardPick = () => {
@@ -162,6 +161,14 @@ const Main = () => {
           <img src={`img/intro5-guild.png`} alt="5" width={"1200px"} />
         </SwiperSlide>
       </Swiper>
+      <div className="toLoginBox">
+        <div className="welcomeImg">
+          <img src="img/welcome.png" alt="welcome" width="300px" />
+          <Link to="/login">
+            <div className="goLogin">로그인하러 가기</div>
+          </Link>
+        </div>
+      </div>
       <Swiper
         slidesPerView={5}
         spaceBetween={30}
@@ -206,15 +213,6 @@ const Main = () => {
           <img src={handleRandomCard[11]} alt="11" />
         </SwiperSlide>
       </Swiper>
-
-      <div className="toLoginBox">
-        <div className="welcomeImg">
-          <img src="img/welcome.png" alt="welcome" width="300px" />
-          <Link to="/login">
-            <div className="goLogin">로그인하러 가기</div>
-          </Link>
-        </div>
-      </div>
       <CardPick ref={cardPickRef} />
     </div>
   );

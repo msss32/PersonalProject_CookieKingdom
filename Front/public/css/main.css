@@ -150,11 +150,11 @@ a:-webkit-any-link {
 }
 
 .toLoginBox {
-  position: absolute;
-  top: 100px;
-  right: 50px;
-  z-index: 3;
+  position: relative;
+  display: inline-block;
   text-align: center;
+  vertical-align: top;
+  padding: 10px;
 }
 
 .goLogin {
@@ -175,7 +175,7 @@ a:-webkit-any-link {
 .welcomeImg:hover:before {
   content: "";
   position: absolute;
-  top: 69%;
+  top: 53%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 50%;

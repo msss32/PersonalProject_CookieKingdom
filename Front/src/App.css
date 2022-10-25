@@ -70,6 +70,22 @@ ul {
   display: none;
 }
 
+.cardPickExit {
+  position: absolute;
+  background-color: black;
+  width: 50px;
+  height: 50px;
+  top: 13%;
+  right: 13%;
+  text-align: center;
+  font-size: 35px;
+  color: white;
+  font-family: "Cookie-Run-B";
+  display: none;
+  z-index: 15;
+  cursor: pointer;
+}
+
 .skipBtn {
   width: 105px;
   height: 30px;
@@ -128,6 +144,7 @@ ul {
   width: 200px;
   height: 300px;
   display: none;
+  z-index: 99;
 }
 
 .cardEffect {
@@ -405,6 +422,7 @@ ul {
   animation: 1s ease-in;
   animation-fill-mode: forwards;
   perspective-origin: center;
+  z-index: 1;
 }
 
 .cardOne {
@@ -504,4 +522,19 @@ ul {
 }
 .backTurn {
   transform: rotateY(180deg);
+}
+
+.common {
+  box-shadow: 0 0 5px brown;
+}
+
+.magic {
+  box-shadow: 0 0 9px blue;
+}
+
+.rare {
+  box-shadow: 0 0 13px violet;
+}
+.unique {
+  box-shadow: 0 0 20px yellow;
 }
