@@ -40,9 +40,6 @@ function signup(id, pw, setWrap) {
     });
     console.log(user);
     alert(user.data);
-    if (user.data === "가입완료") {
-      setWrap();
-    }
   };
 }
 

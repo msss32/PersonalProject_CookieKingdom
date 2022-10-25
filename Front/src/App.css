@@ -86,6 +86,25 @@ ul {
   cursor: pointer;
 }
 
+.cardOpenAll {
+  position: absolute;
+  background-color: black;
+  width: 150px;
+  height: 70px;
+  border-radius: 50%;
+  top: 93%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding-top: 17px;
+  font-size: 35px;
+  color: white;
+  font-family: "Cookie-Run-B";
+  display: none;
+  z-index: 15;
+  cursor: pointer;
+}
+
 .skipBtn {
   width: 105px;
   height: 30px;
@@ -524,17 +543,70 @@ ul {
   transform: rotateY(180deg);
 }
 
-.common {
-  box-shadow: 0 0 5px brown;
+.commonPick {
+  box-shadow: 0 0 5px rgb(175, 61, 61);
+  animation: commonPick infinite 3s linear;
+}
+@keyframes commonPick {
+  0% {
+    box-shadow: 0 0 5px rgb(175, 61, 61);
+  }
+  50% {
+    box-shadow: 0 0 5px rgb(175, 61, 61), 0 0 7px rgb(175, 61, 61),
+      0 0 9px rgb(175, 61, 61), 0 0 11px rgb(175, 61, 61);
+  }
+  100% {
+    box-shadow: 0 0 5px rgb(175, 61, 61);
+  }
 }
 
-.magic {
-  box-shadow: 0 0 9px blue;
+.magicPick {
+  box-shadow: 0 0 7px rgb(19, 113, 255);
+  animation: magicPick infinite 2.5s linear;
+}
+@keyframes magicPick {
+  0% {
+    box-shadow: 0 0 7px rgb(19, 113, 255);
+  }
+  50% {
+    box-shadow: 0 0 7px rgb(19, 113, 255), 0 0 9px rgb(19, 113, 255),
+      0 0 13px rgb(19, 113, 255), 0 0 15px rgb(19, 113, 255);
+  }
+  100% {
+    box-shadow: 0 0 7px rgb(19, 113, 255);
+  }
 }
 
-.rare {
-  box-shadow: 0 0 13px violet;
+.rarePick {
+  box-shadow: 0 0 9px rgb(200, 0, 227);
+  animation: rarePick infinite 2s linear;
 }
-.unique {
-  box-shadow: 0 0 20px yellow;
+@keyframes rarePick {
+  0% {
+    box-shadow: 0 0 9px rgb(200, 0, 227);
+  }
+  50% {
+    box-shadow: 0 0 9px rgb(200, 0, 227), 0 0 11px rgb(200, 0, 227),
+      0 0 13px rgb(200, 0, 227), 0 0 15px rgb(200, 0, 227);
+  }
+  100% {
+    box-shadow: 0 0 9px rgb(200, 0, 227);
+  }
+}
+
+.uniquePick {
+  box-shadow: 0 0 11px rgb(255, 242, 0);
+  animation: uniquePick infinite 1.5s linear;
+}
+@keyframes uniquePick {
+  0% {
+    box-shadow: 0 0 11px rgb(255, 242, 0);
+  }
+  50% {
+    box-shadow: 0 0 11px rgb(255, 242, 0), 0 0 13px rgb(255, 242, 0),
+      0 0 15px rgb(255, 242, 0), 0 0 17px rgb(255, 242, 0);
+  }
+  100% {
+    box-shadow: 0 0 11px rgb(255, 242, 0);
+  }
 }

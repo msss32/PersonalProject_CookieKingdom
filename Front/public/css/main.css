@@ -158,7 +158,9 @@ a:-webkit-any-link {
 }
 
 .goLogin {
+  width: 300px;
   height: 75px;
+  margin-top: 30px;
   font-size: 35px;
   border: 1px solid;
   border-radius: 25px;
@@ -175,7 +177,7 @@ a:-webkit-any-link {
 .welcomeImg:hover:before {
   content: "";
   position: absolute;
-  top: 53%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 50%;

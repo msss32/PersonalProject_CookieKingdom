@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -6,6 +7,7 @@ import { Pagination } from "swiper";
 import Header from "../component/Header";
 import CardPick from "../component/CardPick";
 import { Link } from "react-router-dom";
+import { pickAction } from "../redux/reducer/pickSlice";
 
 const Main = () => {
   useEffect(() => {
@@ -19,6 +21,8 @@ const Main = () => {
       document.head.removeChild(css);
     };
   }, []);
+
+  const dispatch = useDispatch();
 
   const collection = [
     { url: "img/Common/Blueberry.png" },
@@ -116,9 +120,18 @@ const Main = () => {
   }
 
   const cardPickRef = useRef();
+
   const cardPick = () => {
+    if (!isLogin) {
+      alert("로그인 후 이용해주세요");
+      return;
+    }
+    dispatch(pickAction.pick("on"));
     cardPickRef.current.cardPick();
   };
+
+  const isLogin = useSelector((state) => state.login.isLogin);
+  console.log(isLogin);
 
   return (
     <div>
@@ -162,12 +175,15 @@ const Main = () => {
         </SwiperSlide>
       </Swiper>
       <div className="toLoginBox">
-        <div className="welcomeImg">
-          <img src="img/welcome.png" alt="welcome" width="300px" />
+        {!isLogin ? (
           <Link to="/login">
             <div className="goLogin">로그인하러 가기</div>
           </Link>
-        </div>
+        ) : (
+          <div className="welcomeImg">
+            <img src="img/welcome.png" alt="welcome" width="300px" />
+          </div>
+        )}
       </div>
       <Swiper
         slidesPerView={5}

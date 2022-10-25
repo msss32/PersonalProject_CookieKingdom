@@ -4,7 +4,9 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { useDispatch } from "react-redux";
 import ReactPlayer from "react-player";
+import { pickAction } from "../redux/reducer/pickSlice";
 
 const CardPick = forwardRef((props, ref) => {
   const [state, setState] = useState(undefined);
@@ -22,6 +24,8 @@ const CardPick = forwardRef((props, ref) => {
       setVideoUrl("video/CookiePick.mp4");
     },
   }));
+
+  const dispatch = useDispatch();
 
   const endVideo = () => {
     setVideoUrl();
@@ -157,22 +161,22 @@ const CardPick = forwardRef((props, ref) => {
       let className = "";
       const random = Math.floor(Math.random() * 100);
       if (random >= 0 && random < 50) {
-        className = "common";
+        className = "commonPick";
         randomCard.current.push(
           commonCard[Math.floor(Math.random() * commonCard.length)].url
         );
       } else if (random >= 50 && random < 80) {
-        className = "magic";
+        className = "magicPick";
         randomCard.current.push(
           magicCard[Math.floor(Math.random() * magicCard.length)].url
         );
       } else if (random >= 80 && random < 95) {
-        className = "rare";
+        className = "rarePick";
         randomCard.current.push(
           rareCard[Math.floor(Math.random() * rareCard.length)].url
         );
       } else if (random >= 95 && random < 100) {
-        className = "unique";
+        className = "uniquePick";
         randomCard.current.push(
           uniqueCard[Math.floor(Math.random() * uniqueCard.length)].url
         );
@@ -180,6 +184,7 @@ const CardPick = forwardRef((props, ref) => {
       setTimeout(() => {
         frontList[i].classList.add(className);
         backList[i].classList.add(className);
+        document.querySelector(".cardOpenAll").style.display = "block";
       }, 5000);
     }
     setVideoUrl(null);
@@ -212,7 +217,8 @@ const CardPick = forwardRef((props, ref) => {
   };
 
   const cardPickExit = () => {
-    //document.querySelector(".cardPickBack").remove();
+    dispatch(pickAction.pick("off"));
+    window.location.reload();
     document.querySelector(".cardPickBack").style.display = "none";
   };
 
@@ -222,6 +228,9 @@ const CardPick = forwardRef((props, ref) => {
         <div className="background"></div>
         <div className="cardPickExit" onClick={cardPickExit}>
           X
+        </div>
+        <div className="cardOpenAll" onClick={cardOpenAll}>
+          전체 오픈
         </div>
         <div className="cardPick">
           <ReactPlayer
