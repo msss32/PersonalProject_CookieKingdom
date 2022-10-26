@@ -1,9 +1,16 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { loginAction } from "../redux/reducer/loginSlice";
 import { userAction } from "../redux/reducer/userSlice";
 
 const Login = () => {
+  const isLogin = useSelector((state) => state.login.isLogin);
+  const nav = useNavigate();
+  if (isLogin) {
+    alert("이미 로그인이 되어 있어요!");
+    nav("/main");
+  }
   useEffect(() => {
     const container = document.getElementById("container");
     const signUpButton = document.getElementById("signUp");
@@ -37,28 +44,49 @@ const Login = () => {
 
   const idInput = useRef();
   const pwInput = useRef();
+  const joinIdInput = useRef();
+  const joinPwInput = useRef();
+  const joinNameInput = useRef();
+  const joinPhoneInput = useRef();
 
   const dispatch = useDispatch();
   const joinInput = useSelector((state) => state.join);
-  // const isLogin = useSelector((state) => state.login.isLogin);
+
+  const idRegex = new RegExp(/^[a-z]+[a-z0-9]{5,19}$/g);
+  const pwRegex = new RegExp(/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,16}$/);
+  const phoneRegex = new RegExp(/^010-(?:\d{4})-\d{4}$/);
 
   const joinSubmit = (e) => {
     const container = document.getElementById("container");
-    if (joinInput.id !== "" && joinInput.pw !== "" && joinInput.name !== "") {
+    console.log(joinIdInput.current);
+    if (
+      joinIdInput.current.value === "" &&
+      idRegex.test(joinIdInput.current.value) === false
+    ) {
+      e.preventDefault();
+      alert("아이디를 확인해주세요");
+    } else if (joinPwInput.value === "") {
+      e.preventDefault();
+      alert("비밀번호를 확인해주세요");
+    } else if (joinNameInput.value === "") {
+      e.preventDefault();
+      alert("닉네임을 확인해주세요");
+    } else if (joinPhoneInput.value === "") {
+      e.preventDefault();
+      alert("핸드폰번호를 확인해주세요!");
+    } else if (
+      joinIdInput.value !== "" &&
+      idRegex.test(joinIdInput.value) === true
+    ) {
+      console.log(joinIdInput.value);
+      e.preventDefault();
       dispatch(userAction.signUp(joinInput));
-      e.preventDefault();
       container.classList.remove("right-panel-active");
-    } else if (joinInput.id === "") {
-      e.preventDefault();
-      alert("아이디를 입력해주세요");
-    } else if (joinInput.pw === "") {
-      e.preventDefault();
-      alert("비밀번호를 입력해주세요");
-    } else if (joinInput.name === "") {
-      e.preventDefault();
-      alert("닉네임을 입력해주세요");
     }
+    e.preventDefault();
   };
+
+  // console.log(joinIdInput.current.value);
 
   const login = () => {
     dispatch(loginAction.login(idInput.value, pwInput.value));
@@ -83,22 +111,42 @@ const Login = () => {
                 아래 빈칸에 아이디와 이메일, <br />
                 비밀번호를 입력해주세요!
               </span>
-              <input className="externalInput" type="text" placeholder="ID" />
               <input
+                ref={joinIdInput}
+                className="externalInput"
+                type="text"
+                placeholder="ID"
+                onChange={(e) => {
+                  joinIdInput.value = e.target.value;
+                }}
+              />
+              <input
+                ref={joinPwInput}
                 className="externalInput"
                 type="password"
                 placeholder="Password"
                 autoComplete="on"
+                onChange={(e) => {
+                  joinPwInput.value = e.target.value;
+                }}
               />
               <input
+                ref={joinNameInput}
                 className="externalInput"
                 type="name"
                 placeholder="닉네임"
+                onChange={(e) => {
+                  joinNameInput.value = e.target.value;
+                }}
               />
               <input
+                ref={joinPhoneInput}
                 className="externalInput"
                 type=""
-                placeholder="PhoneNumber(-없이 적어주세요)"
+                placeholder="핸드폰(-없이 적어주세요)"
+                onChange={(e) => {
+                  joinPhoneInput.value = e.target.value;
+                }}
               />
               <br />
               <br />
