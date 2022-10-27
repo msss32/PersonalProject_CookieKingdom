@@ -1,7 +1,7 @@
 import axios from "axios";
 import { loginAction } from "../reducer/loginSlice";
 
-function login(id, pw) {
+function login(id, pw, nav, setCookie) {
   return async (dispatch, getState) => {
     const user = await axios({
       method: "post",
@@ -11,36 +11,55 @@ function login(id, pw) {
         pw,
       },
     });
-    if (user.data) {
-      dispatch(loginAction.login());
+    if (user.data.auth) {
+      alert("로그인 완료");
+      setCookie("dori_cookie", user.data.token, { path: "/" });
+      dispatch(loginAction.login(id, pw));
+      nav("/main");
     } else {
-      alert("아이디 없음");
+      alert("아이디와 비밀번호를 확인해주세요");
     }
   };
 }
 
-function logout() {
-  return (dispatch, getState) => {
-    if (getState().login.isLogin) {
-      dispatch(loginAction.logout());
-    }
-  };
-}
-
-function signup(id, pw, setWrap) {
+function loginCheck(id, token) {
   return async (dispatch, getState) => {
-    console.log(id, pw);
+    const user = await axios({
+      method: "post",
+      url: "http://localhost:5000/login",
+      data: {
+        id,
+        token,
+      },
+    });
+    if (user.data.auth) {
+      alert("로그인 완료");
+    } else {
+      alert("아이디와 비밀번호를 확인해주세요");
+    }
+  };
+}
+
+function signup(id, pw, name, phone) {
+  return async (dispatch, getState) => {
     const user = await axios({
       method: "post",
       url: "http://localhost:5000/signup",
       data: {
         id,
         pw,
+        name,
+        phone,
       },
     });
-    console.log(user);
-    alert(user.data);
+    if (user.data) {
+      const container = document.getElementById("container");
+      container.classList.remove("right-panel-active");
+      alert("회원가입 완료");
+    } else {
+      alert("아이디 중복");
+    }
   };
 }
 
-export const loginMdAction = { login, logout, signup };
+export const loginMdAction = { login, signup, loginCheck };

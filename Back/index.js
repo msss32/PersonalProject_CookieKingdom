@@ -3,6 +3,11 @@ const app = express();
 const cors = require("cors");
 const http = require("http").Server(app);
 const { sequelize, user } = require("./public");
+const jwt = require("jsonwebtoken");
+const dot = require("dotenv");
+const { where } = require("sequelize");
+
+dot.config();
 
 app.use(
   cors({
@@ -32,15 +37,43 @@ app.post("/login", async (req, res) => {
     where: { user_id: id, user_pw: pw },
   });
   if (users) {
-    console.log("11");
-    res.send(true);
+    const accessToken = jwt.sign(
+      {
+        user_id: id,
+        user_pw: pw,
+      },
+      process.env.ACCESS_TOKEN_KEY,
+      {
+        expiresIn: "5m",
+      }
+    );
+    const refreshToken = jwt.sign(
+      {
+        user_id: id,
+      },
+      process.env.REFRESH_TOKEN_KEY,
+      {
+        expiresIn: "1d",
+      }
+    );
+    user.update(
+      {
+        refresh_token: refreshToken,
+      },
+      {
+        where: {
+          user_id: id,
+        },
+      }
+    );
+    res.send({ auth: true, token: accessToken });
   } else {
     res.send(false);
   }
 });
 
-app.post("/login", async (req, res) => {
-  let { id, pw } = req.body;
+app.post("/signup", async (req, res) => {
+  let { id, pw, name, phone } = req.body;
   const users = await user.findOne({
     where: { user_id: id },
   });
@@ -49,12 +82,14 @@ app.post("/login", async (req, res) => {
       .create({
         user_id: id,
         user_pw: pw,
+        user_name: name,
+        user_phone: phone,
       })
       .then(() => {
         res.send("가입완료");
       });
   } else {
-    res.send("아이디 중복");
+    res.send("아이디중복");
   }
 });
 

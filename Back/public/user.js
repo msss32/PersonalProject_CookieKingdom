@@ -13,6 +13,19 @@ class user extends Sequelize.Model {
           type: Sequelize.STRING(20),
           allowNull: false,
         },
+        user_name: {
+          type: Sequelize.STRING(20),
+          allowNull: false,
+        },
+        user_phone: {
+          type: Sequelize.STRING(20),
+          allowNull: false,
+        },
+        refresh_token: {
+          type: Sequelize.STRING(500),
+          allowNull: true,
+          defaultValue: 0,
+        },
       },
       {
         sequelize,

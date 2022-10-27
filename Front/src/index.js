@@ -6,16 +6,19 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
+import { CookiesProvider } from "react-cookie";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
 
 root.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Provider>
+  <CookiesProvider>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
+  </CookiesProvider>
 );
 
 reportWebVitals();

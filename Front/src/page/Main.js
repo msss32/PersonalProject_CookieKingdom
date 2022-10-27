@@ -8,8 +8,20 @@ import Header from "../component/Header";
 import CardPick from "../component/CardPick";
 import { Link } from "react-router-dom";
 import { pickAction } from "../redux/reducer/pickSlice";
+import { loginAction } from "../redux/reducer/loginSlice";
+import { useCookies } from "react-cookie";
+import { loginMdAction } from "../redux/middleware/loginMdAction";
 
 const Main = () => {
+  const [cookie, setCookie, removeCookie] = useCookies(["dori_cookie"]);
+  const isToken = useSelector((state) => state.token);
+  let isLogin = useSelector((state) => state.login.isLogin);
+  if (cookie === isToken) {
+    isLogin = true;
+  }
+  useEffect(() => {
+    dispatch(loginMdAction.loginCheck(cookie));
+  });
   useEffect(() => {
     const css = document.createElement("link");
     css.rel = "stylesheet";
@@ -130,8 +142,9 @@ const Main = () => {
     cardPickRef.current.cardPick();
   };
 
-  const isLogin = useSelector((state) => state.login.isLogin);
-  console.log(isLogin);
+  const logOut = () => {
+    dispatch(loginAction.logout());
+  };
 
   return (
     <div>
@@ -180,9 +193,14 @@ const Main = () => {
             <div className="goLogin">로그인하러 가기</div>
           </Link>
         ) : (
-          <div className="welcomeImg">
-            <img src="img/welcome.png" alt="welcome" width="300px" />
-          </div>
+          <>
+            <div className="welcomeImg">
+              <img src="img/welcome.png" alt="welcome" width="300px" />
+            </div>
+            <div className="logOut" onClick={logOut}>
+              로그아웃
+            </div>
+          </>
         )}
       </div>
       <Swiper

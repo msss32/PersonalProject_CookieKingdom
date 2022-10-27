@@ -224,4 +224,11 @@ a:-webkit-any-link {
     box-shadow: 0 0 60px 30px #cbe4d0, 0 0 100px 60px rgb(255, 169, 255),
       0 0 140px 90px rgb(157, 248, 248);
   }
-} ;
+}
+
+.logOut {
+  font-size: 25px;
+  font-family: "Cookie-Run-T";
+  border: 3px solid black;
+  border-radius: 25%;
+}

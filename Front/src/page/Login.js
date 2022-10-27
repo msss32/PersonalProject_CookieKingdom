@@ -1,16 +1,13 @@
 import React, { useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useCookies } from "react-cookie";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { loginAction } from "../redux/reducer/loginSlice";
-import { userAction } from "../redux/reducer/userSlice";
+import { loginMdAction } from "../redux/middleware/loginMdAction";
 
 const Login = () => {
-  const isLogin = useSelector((state) => state.login.isLogin);
   const nav = useNavigate();
-  if (isLogin) {
-    alert("이미 로그인이 되어 있어요!");
-    nav("/main");
-  }
+  const [cookie, setCookie, removeCookie] = useCookies(["dori_cookie"]);
+
   useEffect(() => {
     const container = document.getElementById("container");
     const signUpButton = document.getElementById("signUp");
@@ -50,46 +47,59 @@ const Login = () => {
   const joinPhoneInput = useRef();
 
   const dispatch = useDispatch();
-  const joinInput = useSelector((state) => state.join);
-
-  const idRegex = new RegExp(/^[a-z]+[a-z0-9]{5,19}$/g);
-  const pwRegex = new RegExp(/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,16}$/);
-  const phoneRegex = new RegExp(/^010-(?:\d{4})-\d{4}$/);
 
   const joinSubmit = (e) => {
-    const container = document.getElementById("container");
-    console.log(joinIdInput.current);
+    e.preventDefault();
+    const idRegex = new RegExp(/^[a-z]+[a-z0-9]{5,20}$/g); // 소문자시작, 최소5자 최대20자
+    const pwRegex = new RegExp(
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+    ); // 최소 8 자, 하나 이상의 문자, 하나의 숫자 및 하나의 특수 문자
+    const phoneRegex = new RegExp(/^010-?([0-9]{4})-?([0-9]{4})$/); // 010시작-4자-4자
     if (
-      joinIdInput.current.value === "" &&
+      joinIdInput.current.value === "" ||
       idRegex.test(joinIdInput.current.value) === false
     ) {
-      e.preventDefault();
       alert("아이디를 확인해주세요");
-    } else if (joinPwInput.value === "") {
-      e.preventDefault();
-      alert("비밀번호를 확인해주세요");
-    } else if (joinNameInput.value === "") {
-      e.preventDefault();
-      alert("닉네임을 확인해주세요");
-    } else if (joinPhoneInput.value === "") {
-      e.preventDefault();
-      alert("핸드폰번호를 확인해주세요!");
     } else if (
-      joinIdInput.value !== "" &&
-      idRegex.test(joinIdInput.value) === true
+      joinPwInput.current.value === "" ||
+      pwRegex.test(joinPwInput.current.value) === false
     ) {
-      console.log(joinIdInput.value);
-      e.preventDefault();
-      dispatch(userAction.signUp(joinInput));
-      container.classList.remove("right-panel-active");
+      alert("비밀번호를 확인해주세요");
+    } else if (joinNameInput.current.value === "") {
+      alert("닉네임을 확인해주세요");
+    } else if (
+      joinPhoneInput.current.value === "" ||
+      phoneRegex.test(joinPhoneInput.current.value) === false
+    ) {
+      alert("핸드폰번호를 확인해주세요!");
+    } else {
+      dispatch(
+        loginMdAction.signup(
+          joinIdInput.current.value,
+          joinPwInput.current.value,
+          joinNameInput.current.value,
+          joinPhoneInput.current.value
+        )
+      );
     }
-    e.preventDefault();
   };
 
-  // console.log(joinIdInput.current.value);
-
-  const login = () => {
-    dispatch(loginAction.login(idInput.value, pwInput.value));
+  const login = (e) => {
+    e.preventDefault();
+    if (idInput.current.value === "") {
+      alert("아이디를 확인해주세요");
+    } else if (pwInput.current.value === "") {
+      alert("비밀번호를 확인해주세요");
+    } else {
+      dispatch(
+        loginMdAction.login(
+          idInput.current.value,
+          pwInput.current.value,
+          nav,
+          setCookie
+        )
+      );
+    }
   };
 
   return (
@@ -143,7 +153,7 @@ const Login = () => {
                 ref={joinPhoneInput}
                 className="externalInput"
                 type=""
-                placeholder="핸드폰(-없이 적어주세요)"
+                placeholder="핸드폰(010-0000-0000)"
                 onChange={(e) => {
                   joinPhoneInput.value = e.target.value;
                 }}
