@@ -1,0 +1,32 @@
+.auction {
+  width: 100vw;
+  height: 100vh;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 35px;
+  font-family: "Cookie-Run-T";
+}
+
+.cardInfo {
+  display: flex;
+  justify-content: center;
+  width: 15vw;
+  margin-right: 35px;
+}
+
+.cardImg {
+  width: 100%;
+}
+
+.cardView {
+  font-size: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+}

@@ -602,3 +602,9 @@ ul {
     box-shadow: 0 0 11px rgb(255, 242, 0);
   }
 }
+
+.timer {
+  width: 100%;
+  font-size: 25px;
+  color: black;
+}

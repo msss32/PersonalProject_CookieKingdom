@@ -6,22 +6,25 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper";
 import Header from "../component/Header";
 import CardPick from "../component/CardPick";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { loginMdAction } from "../redux/middleware/loginMdAction";
 import { pickAction } from "../redux/reducer/pickSlice";
 import { loginAction } from "../redux/reducer/loginSlice";
 import { useCookies } from "react-cookie";
-import { loginMdAction } from "../redux/middleware/loginMdAction";
 
 const Main = () => {
   const [cookie, setCookie, removeCookie] = useCookies(["dori_cookie"]);
-  const isToken = useSelector((state) => state.token);
-  let isLogin = useSelector((state) => state.login.isLogin);
-  if (cookie === isToken) {
-    isLogin = true;
-  }
+  const user_Id = useSelector((state) => state.login.id);
+  const isLogin = useSelector((state) => state.login.isLogin);
+  const dispatch = useDispatch();
+  const nav = useNavigate();
+
   useEffect(() => {
-    dispatch(loginMdAction.loginCheck(cookie));
-  });
+    dispatch(
+      loginMdAction.loginCheck(user_Id, cookie, setCookie, isLogin, nav)
+    );
+  }, [nav]);
+
   useEffect(() => {
     const css = document.createElement("link");
     css.rel = "stylesheet";
@@ -33,8 +36,6 @@ const Main = () => {
       document.head.removeChild(css);
     };
   }, []);
-
-  const dispatch = useDispatch();
 
   const collection = [
     { url: "img/Common/Blueberry.png" },
@@ -143,6 +144,7 @@ const Main = () => {
   };
 
   const logOut = () => {
+    removeCookie("dori_cookie", { path: "/" });
     dispatch(loginAction.logout());
   };
 

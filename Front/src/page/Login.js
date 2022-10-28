@@ -1,12 +1,15 @@
 import React, { useEffect, useRef } from "react";
-import { useCookies } from "react-cookie";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginMdAction } from "../redux/middleware/loginMdAction";
+import { useCookies } from "react-cookie";
 
 const Login = () => {
+  const [cookie, setCookie] = useCookies(["dori_cookie"]);
+  const user_Id = useSelector((state) => state.login.id);
+  const isLogin = useSelector((state) => state.login.isLogin);
+  const dispatch = useDispatch();
   const nav = useNavigate();
-  const [cookie, setCookie, removeCookie] = useCookies(["dori_cookie"]);
 
   useEffect(() => {
     const container = document.getElementById("container");
@@ -45,8 +48,6 @@ const Login = () => {
   const joinPwInput = useRef();
   const joinNameInput = useRef();
   const joinPhoneInput = useRef();
-
-  const dispatch = useDispatch();
 
   const joinSubmit = (e) => {
     e.preventDefault();

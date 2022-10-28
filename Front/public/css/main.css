@@ -10,9 +10,8 @@ a:-webkit-any-link {
 }
 
 .mySwiper1 {
-  width: 1200px;
+  width: calc(100% - 680px);
   height: 700px;
-  top: 50px;
   display: inline-block;
 }
 
@@ -44,7 +43,7 @@ a:-webkit-any-link {
 .mySwiper2 {
   width: 1200px;
   height: 500px;
-  top: 100px;
+  top: 20px;
 }
 
 .mySwiper2 .swiper-slide {
@@ -227,6 +226,10 @@ a:-webkit-any-link {
 }
 
 .logOut {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
   font-size: 25px;
   font-family: "Cookie-Run-T";
   border: 3px solid black;

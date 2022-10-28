@@ -4,10 +4,13 @@ const cors = require("cors");
 const http = require("http").Server(app);
 const { sequelize, user } = require("./public");
 const jwt = require("jsonwebtoken");
-const dot = require("dotenv");
+const dot = require("dotenv").config();
 const { where } = require("sequelize");
-
-dot.config();
+const { decode } = require("punycode");
+const { findOne } = require("./public/user");
+const accessTokenKey = process.env.ACCESS_TOKEN_KEY;
+const refreshTokenKey = process.env.REFRESH_TOKEN_KEY;
+const socketio = require("socket.io");
 
 app.use(
   cors({
@@ -40,18 +43,17 @@ app.post("/login", async (req, res) => {
     const accessToken = jwt.sign(
       {
         user_id: id,
-        user_pw: pw,
       },
-      process.env.ACCESS_TOKEN_KEY,
+      accessTokenKey,
       {
-        expiresIn: "5m",
+        expiresIn: "15m",
       }
     );
     const refreshToken = jwt.sign(
       {
         user_id: id,
       },
-      process.env.REFRESH_TOKEN_KEY,
+      refreshTokenKey,
       {
         expiresIn: "1d",
       }
@@ -84,6 +86,7 @@ app.post("/signup", async (req, res) => {
         user_pw: pw,
         user_name: name,
         user_phone: phone,
+        user_point: 5000000,
       })
       .then(() => {
         res.send("가입완료");
@@ -93,6 +96,53 @@ app.post("/signup", async (req, res) => {
   }
 });
 
-app.listen(5000, () => {
+app.post("/logincheck", (req, res) => {
+  const accessToken = req.body.token.dori_cookie;
+  jwt.verify(accessToken, accessTokenKey, (err, decoded) => {
+    if (err) {
+      res.send(false);
+    } else if (decoded) {
+      const refreshToken = user
+        .findOne({
+          where: { user_id: decoded.user_id },
+        })
+        .then((e) => {
+          jwt.verify(e.refresh_token, refreshTokenKey, (err, decoded) => {
+            if (err) {
+              res.send(false);
+            } else if (decoded) {
+              const accessToken = jwt.sign(
+                {
+                  user_id: decoded.user_id,
+                },
+                process.env.ACCESS_TOKEN_KEY,
+                {
+                  expiresIn: "15m",
+                }
+              );
+              res.send({ id: decoded.user_id, token: accessToken });
+            }
+          });
+        });
+    }
+  });
+});
+
+const server = app.listen(5000, () => {
   console.log("서버 열림");
+});
+
+const io = socketio(server);
+
+const userList = [];
+const userId = [];
+
+io.on("connection", (socket) => {
+  console.log("유저 접속");
+
+  socket.on("enroll", (name, id) => {
+    userList.push(name);
+    userId.push(id);
+    io.emit("");
+  });
 });

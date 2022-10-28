@@ -1,7 +1,23 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Header } from "../component";
+import { useCookies } from "react-cookie";
+import { loginMdAction } from "../redux/middleware/loginMdAction";
 
 const Collection = () => {
+  const [cookie, setCookie] = useCookies(["dori_cookie"]);
+  const user_Id = useSelector((state) => state.login.id);
+  const isLogin = useSelector((state) => state.login.isLogin);
+  const dispatch = useDispatch();
+  const nav = useNavigate();
+
+  useEffect(() => {
+    dispatch(
+      loginMdAction.loginCheck(user_Id, cookie, setCookie, isLogin, nav)
+    );
+  }, [dispatch, cookie, setCookie, user_Id, isLogin, nav]);
+
   useEffect(() => {
     const css = document.createElement("link");
     css.rel = "stylesheet";

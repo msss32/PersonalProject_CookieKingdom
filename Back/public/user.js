@@ -21,6 +21,11 @@ class user extends Sequelize.Model {
           type: Sequelize.STRING(20),
           allowNull: false,
         },
+        user_point: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+          defaultValue: 0,
+        },
         refresh_token: {
           type: Sequelize.STRING(500),
           allowNull: true,

@@ -22,25 +22,29 @@ function login(id, pw, nav, setCookie) {
   };
 }
 
-function loginCheck(id, token) {
+function loginCheck(id, token, setCookie, isLogin, nav) {
   return async (dispatch, getState) => {
-    const user = await axios({
+    const check = await axios({
       method: "post",
-      url: "http://localhost:5000/login",
+      url: "http://localhost:5000/logincheck",
       data: {
         id,
         token,
       },
     });
-    if (user.data.auth) {
-      alert("로그인 완료");
+    if (check.data !== false) {
+      dispatch(loginAction.login(check.data.id));
+      setCookie("dori_cookie", check.data.token, { path: "/" });
+    } else if (check.data === false) {
+      alert("로그인을 부탁드립니다");
+      isLogin = false;
+      nav("/login");
     } else {
-      alert("아이디와 비밀번호를 확인해주세요");
     }
   };
 }
 
-function signup(id, pw, name, phone) {
+function signup(id, pw, name, phone, point) {
   return async (dispatch, getState) => {
     const user = await axios({
       method: "post",
@@ -50,6 +54,7 @@ function signup(id, pw, name, phone) {
         pw,
         name,
         phone,
+        point,
       },
     });
     if (user.data) {
