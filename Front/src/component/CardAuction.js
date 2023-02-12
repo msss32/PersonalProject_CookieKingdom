@@ -4,12 +4,11 @@ import Timer from "./Timer";
 import io from "socket.io-client";
 
 const CardAuction = () => {
-  const socket = io();
+  const socket = io.connect();
   const userId = useSelector((state) => state.login.id);
   const bidRef = useRef();
   const [bidMoney, setBidMoney] = useState();
   const [bidder, setBidder] = useState();
-  const [cardIdx, setCardIdx] = useState(0);
   const legendary = [
     { url: "img/Legendary/DarknessWitch.png", name: "어둠마녀쿠키" },
     { url: "img/Legendary/FireFairy.png", name: "불꽃정령쿠키" },
@@ -27,7 +26,8 @@ const CardAuction = () => {
   setTimeout(() => {
     const socketId = socket.id;
     socket.emit("enroll", userId, socketId);
-  });
+    console.log(socketId);
+  }, 1000);
 
   return (
     <div className="auction">

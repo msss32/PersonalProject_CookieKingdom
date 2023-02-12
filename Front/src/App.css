@@ -32,7 +32,7 @@ ul {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  z-index: 5;
+  z-index: 11;
 }
 
 .background {
@@ -600,6 +600,40 @@ ul {
   }
   100% {
     box-shadow: 0 0 11px rgb(255, 242, 0);
+  }
+}
+
+.epicPick {
+  box-shadow: 0 0 13px rgb(242, 9, 9);
+  animation: epicPick infinite 1.5s linear;
+}
+@keyframes epicPick {
+  0% {
+    box-shadow: 0 0 13px rgb(242, 9, 9);
+  }
+  50% {
+    box-shadow: 0 0 13px rgb(242, 9, 9), 0 0 15px rgb(242, 9, 9),
+      0 0 17px rgb(242, 9, 9), 0 0 19px rgb(242, 9, 9);
+  }
+  100% {
+    box-shadow: 0 0 13px rgb(242, 9, 9);
+  }
+}
+
+.legendaryPick {
+  box-shadow: 0 0 15px rgb(48, 242, 9);
+  animation: legendaryPick infinite 1.5s linear;
+}
+@keyframes legendaryPick {
+  0% {
+    box-shadow: 0 0 15px rgb(48, 242, 9);
+  }
+  50% {
+    box-shadow: 0 0 15px rgb(48, 242, 9), 0 0 17px rgb(48, 242, 9),
+      0 0 19px rgb(48, 242, 9), 0 0 21px rgb(48, 242, 9);
+  }
+  100% {
+    box-shadow: 0 0 15px rgb(48, 242, 9);
   }
 }
 

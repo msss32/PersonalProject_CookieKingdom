@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { loginReducer, pickReducer, userReducer } from "../redux/reducer";
+import { loginReducer, pickReducer, userReducer } from "./reducer";
 import thunk from "redux-thunk";
 
 const rootReducer = combineReducers({

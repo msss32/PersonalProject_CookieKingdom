@@ -10,11 +10,10 @@ const { decode } = require("punycode");
 const { findOne } = require("./public/user");
 const accessTokenKey = process.env.ACCESS_TOKEN_KEY;
 const refreshTokenKey = process.env.REFRESH_TOKEN_KEY;
-const socketio = require("socket.io");
 
 app.use(
   cors({
-    origins: ["http://localhost:3000"],
+    origins: ["http://172.20.144.1:3001"],
   })
 );
 
@@ -128,11 +127,11 @@ app.post("/logincheck", (req, res) => {
   });
 });
 
-const server = app.listen(5000, () => {
-  console.log("서버 열림");
+const io = require("socket.io")(http, {
+  cors: {
+    origins: ["http://172.20.144.1:3001"],
+  },
 });
-
-const io = socketio(server);
 
 const userList = [];
 const userId = [];
@@ -145,4 +144,8 @@ io.on("connection", (socket) => {
     userId.push(id);
     io.emit("");
   });
+});
+
+http.listen(5000, () => {
+  console.log("서버 열림");
 });

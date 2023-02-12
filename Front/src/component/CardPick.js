@@ -152,6 +152,27 @@ const CardPick = forwardRef((props, ref) => {
     { url: "img/Unique/TwizzlyGummy.png" },
   ];
 
+  const epicCard = [
+    { url: "img/Epic/BlackRaisin.png" },
+    { url: "img/Epic/DarkKakao.png" },
+    { url: "img/Epic/GoldCheese.png" },
+    { url: "img/Epic/HollyBerry.png" },
+    { url: "img/Epic/Madeleine.png" },
+    { url: "img/Epic/PureVanilla.png" },
+    { url: "img/Epic/SaintLily.png" },
+    { url: "img/Epic/TeaKnight.png" },
+    { url: "img/Epic/Velvet.png" },
+  ];
+
+  const legendaryCard = [
+    { url: "img/Legendary/DarknessWitch.png", name: "어둠마녀쿠키" },
+    { url: "img/Legendary/FireFairy.png", name: "불꽃정령쿠키" },
+    { url: "img/Legendary/FrostQueen.png", name: "서리여왕쿠키" },
+    { url: "img/Legendary/MoonLight.png", name: "달빛술사쿠키" },
+    { url: "img/Legendary/SeaFairy.png", name: "바다요정쿠키" },
+    { url: "img/Legendary/WindArcher.png", name: "바람궁수쿠키" },
+  ];
+
   let randomCard = useRef([]);
 
   const randomCardPick = () => {
@@ -160,25 +181,35 @@ const CardPick = forwardRef((props, ref) => {
     for (let i = 0; i < 10; i++) {
       let className = "";
       const random = Math.floor(Math.random() * 100);
-      if (random >= 0 && random < 50) {
+      if (random >= 0 && random < 40) {
         className = "commonPick";
         randomCard.current.push(
           commonCard[Math.floor(Math.random() * commonCard.length)].url
         );
-      } else if (random >= 50 && random < 80) {
+      } else if (random >= 40 && random < 70) {
         className = "magicPick";
         randomCard.current.push(
           magicCard[Math.floor(Math.random() * magicCard.length)].url
         );
-      } else if (random >= 80 && random < 95) {
+      } else if (random >= 70 && random < 85) {
         className = "rarePick";
         randomCard.current.push(
           rareCard[Math.floor(Math.random() * rareCard.length)].url
         );
-      } else if (random >= 95 && random < 100) {
+      } else if (random >= 85 && random < 90) {
         className = "uniquePick";
         randomCard.current.push(
           uniqueCard[Math.floor(Math.random() * uniqueCard.length)].url
+        );
+      } else if (random >= 95 && random < 97) {
+        className = "epicPick";
+        randomCard.current.push(
+          epicCard[Math.floor(Math.random() * epicCard.length)].url
+        );
+      } else if (random >= 97 && random < 100) {
+        className = "legendaryPick";
+        randomCard.current.push(
+          legendaryCard[Math.floor(Math.random() * legendaryCard.length)].url
         );
       }
       setTimeout(() => {

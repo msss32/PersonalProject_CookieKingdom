@@ -1,13 +1,12 @@
 import React, { useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginMdAction } from "../redux/middleware/loginMdAction";
 import { useCookies } from "react-cookie";
 
 const Login = () => {
   const [cookie, setCookie] = useCookies(["dori_cookie"]);
-  const user_Id = useSelector((state) => state.login.id);
-  const isLogin = useSelector((state) => state.login.isLogin);
+  console.log(cookie);
   const dispatch = useDispatch();
   const nav = useNavigate();
 
