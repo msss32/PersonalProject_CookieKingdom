@@ -13,7 +13,7 @@ const refreshTokenKey = process.env.REFRESH_TOKEN_KEY;
 
 app.use(
   cors({
-    origins: ["http://172.20.144.1:3001"],
+    origins: ["http://localhost:3000"],
   })
 );
 
@@ -129,7 +129,7 @@ app.post("/logincheck", (req, res) => {
 
 const io = require("socket.io")(http, {
   cors: {
-    origins: ["http://172.20.144.1:3001"],
+    origins: ["http://localhost:3000"],
   },
 });
 

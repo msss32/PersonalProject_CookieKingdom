@@ -5,7 +5,7 @@ function login(id, pw, nav, setCookie) {
   return async (dispatch, getState) => {
     const user = await axios({
       method: "post",
-      url: "http://172.20.144.1:5000/login",
+      url: "http://localhost:5000/login",
       data: {
         id,
         pw,
@@ -26,7 +26,7 @@ function loginCheck(id, token, setCookie, isLogin, nav) {
   return async (dispatch, getState) => {
     const check = await axios({
       method: "post",
-      url: "http://172.20.144.1:5000/logincheck",
+      url: "http://localhost:5000/logincheck",
       data: {
         id,
         token,
@@ -48,7 +48,7 @@ function signup(id, pw, name, phone, point) {
   return async (dispatch, getState) => {
     const user = await axios({
       method: "post",
-      url: "http://172.20.144.1:5000/signup",
+      url: "http://localhost:5000/signup",
       data: {
         id,
         pw,

@@ -20,30 +20,86 @@
 - 로그인
 - 카드뽑기
 - 경매(미구현)
-- 
+- 거래게시판(미구현)
+- 도감(일부구현)
 
 <br/>
 
 ### 3. 화면구성
 #
 
-- **메인화면**
+- **오프닝**
 
-<img width="600" alt="1" src="">
+<img width="600" alt="1" src="https://user-images.githubusercontent.com/107897886/221533336-c957c455-1a34-4aff-a100-b263e01432fb.png">
 <br/>
+<br/>
+<img width="600" alt="1" src="https://user-images.githubusercontent.com/107897886/221534205-f6c1f665-e600-4342-9f38-081f7f39629e.gif">
+<br/>
+<br/>
+
+```javascript
+import ReactPlayer from "react-player";
+
+const [playIndex, setPlayIndex] = useState(0);
+  const playList = [
+    { index: 0, url: "video/video1.mp4" },
+    { index: 1, url: "video/video2.mp4" },
+    { index: 2, url: "video/video3.mp4" },
+    { index: 3, url: "video/video4.mp4" },
+    { index: 4, url: "video/video5.mp4" },
+  ];
+  const handleNextVideo = (video, playIndex) => {
+    if (playIndex === video.length - 1) {
+      setPlayIndex(0);
+    } else {
+      setPlayIndex(playIndex + 1);
+    }
+  };
+```
+리액트 플레이어라는 라이브러리를 도입하여 백그라운드에 영상이 계속적으로 실행되도록 구현. 각각 영상이 끝날때 인덱스의 값을 1추가하여 다음 영상이 진행되도록 함.
+
 <br/>
 
 - **로그인 & 회원가입**
 
-<img width="600" alt="1" src="">
+<img width="600" alt="1" src="https://user-images.githubusercontent.com/107897886/221541343-b0623519-4dff-4cd0-b5a9-e5ad3305a6de.gif">
+<br/>
+<br/>
+<img width="600" alt="1" src="https://user-images.githubusercontent.com/107897886/221541360-a8cdbbb2-31ac-401f-9363-a0ed6d932e04.gif">
+<br/>
 <br/>
 
 ```javascript
 
 ```
-```javascript
+<br/>
 
+```javascript
+function signup(id, pw, name, phone, point) {
+  return async (dispatch, getState) => {
+    const user = await axios({
+      method: "post",
+      url: "http://localhost:5000/signup",
+      data: {
+        id,
+        pw,
+        name,
+        phone,
+        point,
+      },
+    });
+    if (user.data) {
+      const container = document.getElementById("container");
+      container.classList.remove("right-panel-active");
+      alert("회원가입 완료");
+    } else {
+      alert("아이디 중복");
+    }
+  };
+}
 ```
+<br/>
+
 ```javascirpt
 
 ```
@@ -51,7 +107,7 @@
 
 <br/>
 
-- **점프와 더블 점프**
+- **도감**
 
 <img width="600" alt="1" src="1">
 
